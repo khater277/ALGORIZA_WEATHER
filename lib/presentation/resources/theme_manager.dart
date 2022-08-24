@@ -68,11 +68,10 @@ class ThemeManager {
         bodyLarge: getMediumStyle(
           fontColor: ColorManager.lightGrey,
         ),
-        bodyMedium: getRegularStyle(
-          fontColor: ColorManager.darkGrey,
-        ),
+        bodyMedium: getSemiBoldStyle(
+            fontColor: ColorManager.white, fontSize: FontSize.s12),
         bodySmall: getRegularStyle(
-            fontColor: ColorManager.darkGrey, fontSize: FontSize.s12),
+            fontColor: ColorManager.white, fontSize: FontSize.s12),
       ),
 
       /// input decoration

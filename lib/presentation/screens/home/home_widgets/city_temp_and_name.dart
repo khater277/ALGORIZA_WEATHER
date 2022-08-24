@@ -8,53 +8,50 @@ class CityTempAndName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: PaddingHorizontal.p10),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "33",
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    Text(
-                      "°",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge!
-                          .copyWith(fontSize: FontSize.s38),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "Alexandria",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    SizedBox(width: PaddingHorizontal.p2),
-                    Icon(
-                      Icons.location_on,
-                      size: AppSize.s16,
-                    )
-                  ],
-                )
-              ],
-            ),
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "33",
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  Text(
+                    "°",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge!
+                        .copyWith(fontSize: FontSize.s38),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Alexandria",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  SizedBox(width: PaddingHorizontal.p2),
+                  Icon(
+                    Icons.location_on,
+                    size: AppSize.s16,
+                  )
+                ],
+              )
+            ],
           ),
-          Image.asset(
-            ImagesManager.sun,
-            width: AppSize.s60,
-            height: AppSize.s60,
-          ),
-        ],
-      ),
+        ),
+        Image.asset(
+          ImagesManager.sun,
+          width: AppSize.s60,
+          height: AppSize.s60,
+        ),
+      ],
     );
   }
 }
