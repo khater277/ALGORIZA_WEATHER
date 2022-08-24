@@ -45,6 +45,10 @@ class PaddingVertical {
   static double p19 = 19.h;
   static double p20 = 20.h;
   static double p30 = 30.h;
+  static double p40 = 40.h;
+  static double p45 = 45.h;
+  static double p50 = 50.h;
+  static double p60 = 60.h;
 }
 
 class AppSize {
@@ -78,4 +82,8 @@ class AppSize {
   static double s28 = 28.sp;
   static double s29 = 29.sp;
   static double s30 = 30.sp;
+  static double s40 = 40.sp;
+  static double s50 = 50.sp;
+  static double s60 = 60.sp;
+  static double s70 = 70.sp;
 }

@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 class ColorManager {
   static const Color black = Colors.black;
   static const Color white = Colors.white;
-  static const Color primary = Color(0xFFED9728);
-  static const Color grey = Color(0xFF737477); // for text field hint
-  static const Color lightGrey = Color(0xFF9E9E9E); // for details
-  static const Color darkGrey = Color(0xFF525252); // for on boarding text
-  static const Color semiDarkGrey = Color(0xFF304654); // for text field border
-  static const Color lightBlack = Color(0xFF707070); // for settings text
+  static const Color blue = Color(0xFF7cb2f2);
+  static const Color grey = Color(0xFF727272); // for text field hint
+  static const Color lightGrey = Color(0xFFd8d9dd); // for drawer text
+  static const Color darkGrey = Color(0xFF171717); // for dark card background
+  static const Color darkBlue = Color(0xFF2d3741); // for drawer background
+  static const Color lightBlue = Color(0xFF8cbaec); // for light card background
 
   static MaterialColor generateMaterialColor(Color color) {
     return MaterialColor(color.value, {

@@ -10,9 +10,9 @@ class ThemeManager {
   static ThemeData lightTheme() {
     return ThemeData(
       /// colors
-      primaryColor: ColorManager.primary,
-      primarySwatch: ColorManager.generateMaterialColor(ColorManager.primary),
-      scaffoldBackgroundColor: ColorManager.white,
+      primaryColor: ColorManager.blue,
+      primarySwatch: ColorManager.generateMaterialColor(ColorManager.blue),
+      scaffoldBackgroundColor: ColorManager.blue,
       splashColor: ColorManager.lightGrey,
 
       ///app bar
@@ -22,7 +22,7 @@ class ThemeManager {
           color: Colors.white,
         ),
         elevation: 0,
-        backgroundColor: ColorManager.primary,
+        backgroundColor: ColorManager.blue,
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarIconBrightness: Brightness.dark,
           statusBarBrightness: Brightness.light,
@@ -39,7 +39,7 @@ class ThemeManager {
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
         elevation: 0,
-        primary: ColorManager.primary,
+        primary: ColorManager.blue,
         textStyle: getRegularStyle(
           fontColor: ColorManager.white,
           fontSize: FontSize.s16,
@@ -49,14 +49,22 @@ class ThemeManager {
         minimumSize: Size(double.infinity, 40.76.h),
       )),
 
+      ///card
+      cardTheme: CardTheme(
+        elevation: 0,
+        color: ColorManager.lightBlue,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppSize.s16)),
+      ),
+
       /// text
       textTheme: TextTheme(
-        titleLarge: getSemiBoldStyle(
-            fontColor: ColorManager.primary, fontSize: FontSize.s18),
-        titleMedium: getSemiBoldStyle(
-            fontColor: ColorManager.darkGrey, fontSize: FontSize.s16),
-        titleSmall: getBoldStyle(
-            fontColor: ColorManager.primary, fontSize: FontSize.s12),
+        titleLarge: getLightStyle(
+            fontColor: ColorManager.white, fontSize: FontSize.s55),
+        titleMedium: getMediumStyle(
+            fontColor: ColorManager.white, fontSize: FontSize.s24),
+        titleSmall:
+            getBoldStyle(fontColor: ColorManager.white, fontSize: FontSize.s16),
         bodyLarge: getMediumStyle(
           fontColor: ColorManager.lightGrey,
         ),
@@ -88,17 +96,17 @@ class ThemeManager {
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.sp),
             borderSide: const BorderSide(
-              color: ColorManager.semiDarkGrey,
+              color: ColorManager.blue,
             )),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.sp),
             borderSide: const BorderSide(
-              color: ColorManager.primary,
+              color: ColorManager.blue,
             )),
       ),
 
       /// icon
-      iconTheme: IconThemeData(color: ColorManager.white, size: AppSize.s22),
+      iconTheme: IconThemeData(color: ColorManager.white, size: AppSize.s24),
       // iconTheme: const IconThemeData(color: ColorManager.primary)
     );
   }
