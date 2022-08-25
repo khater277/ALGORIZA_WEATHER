@@ -36,7 +36,7 @@ class CityTempAndName extends StatelessWidget {
                     "Alexandria",
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  SizedBox(width: PaddingHorizontal.p2),
+                  SizedBox(width: AppWidth.w2),
                   Icon(
                     Icons.location_on,
                     size: AppSize.s16,

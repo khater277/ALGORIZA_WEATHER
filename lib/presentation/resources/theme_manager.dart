@@ -72,6 +72,12 @@ class ThemeManager {
             fontColor: ColorManager.white, fontSize: FontSize.s12),
         bodySmall: getRegularStyle(
             fontColor: ColorManager.white, fontSize: FontSize.s12),
+        displaySmall: getMediumStyle(
+          fontColor: ColorManager.white,
+          fontSize: FontSize.s11,
+        ),
+        displayMedium: getSemiBoldStyle(
+            fontColor: ColorManager.white, fontSize: FontSize.s14),
       ),
 
       /// input decoration

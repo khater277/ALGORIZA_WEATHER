@@ -1,54 +1,59 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class PaddingHorizontal {
-  static double p1 = 1.w;
-  static double p2 = 2.w;
-  static double p3 = 3.w;
-  static double p4 = 4.w;
-  static double p5 = 5.w;
-  static double p6 = 6.w;
-  static double p7 = 7.w;
-  static double p8 = 8.w;
-  static double p9 = 9.w;
-  static double p10 = 10.w;
-  static double p11 = 11.w;
-  static double p12 = 12.w;
-  static double p13 = 13.w;
-  static double p14 = 14.w;
-  static double p15 = 15.w;
-  static double p16 = 16.w;
-  static double p17 = 17.w;
-  static double p18 = 18.w;
-  static double p19 = 19.w;
-  static double p20 = 20.w;
+class AppWidth {
+  static double w1 = 1.w;
+  static double w2 = 2.w;
+  static double w3 = 3.w;
+  static double w4 = 4.w;
+  static double w5 = 5.w;
+  static double w6 = 6.w;
+  static double w7 = 7.w;
+  static double w8 = 8.w;
+  static double w9 = 9.w;
+  static double w10 = 10.w;
+  static double w11 = 11.w;
+  static double w12 = 12.w;
+  static double w13 = 13.w;
+  static double w14 = 14.w;
+  static double w15 = 15.w;
+  static double w16 = 16.w;
+  static double w17 = 17.w;
+  static double w18 = 18.w;
+  static double w19 = 19.w;
+  static double w20 = 20.w;
+  static double w25 = 25.w;
+  static double w30 = 30.w;
+  static double w40 = 40.w;
 }
 
-class PaddingVertical {
-  static double p1 = 1.h;
-  static double p2 = 2.h;
-  static double p3 = 3.h;
-  static double p4 = 4.h;
-  static double p5 = 5.h;
-  static double p6 = 6.h;
-  static double p7 = 7.h;
-  static double p8 = 8.h;
-  static double p9 = 9.h;
-  static double p10 = 10.h;
-  static double p11 = 11.h;
-  static double p12 = 12.h;
-  static double p13 = 13.h;
-  static double p14 = 14.h;
-  static double p15 = 15.h;
-  static double p16 = 16.h;
-  static double p17 = 17.h;
-  static double p18 = 18.h;
-  static double p19 = 19.h;
-  static double p20 = 20.h;
-  static double p30 = 30.h;
-  static double p40 = 40.h;
-  static double p45 = 45.h;
-  static double p50 = 50.h;
-  static double p60 = 60.h;
+class AppHeight {
+  static double h1 = 1.h;
+  static double h2 = 2.h;
+  static double h3 = 3.h;
+  static double h4 = 4.h;
+  static double h5 = 5.h;
+  static double h6 = 6.h;
+  static double h7 = 7.h;
+  static double h8 = 8.h;
+  static double h9 = 9.h;
+  static double h10 = 10.h;
+  static double h11 = 11.h;
+  static double h12 = 12.h;
+  static double h13 = 13.h;
+  static double h14 = 14.h;
+  static double h15 = 15.h;
+  static double h16 = 16.h;
+  static double h17 = 17.h;
+  static double h18 = 18.h;
+  static double h19 = 19.h;
+  static double h20 = 20.h;
+  static double h25 = 25.h;
+  static double h30 = 30.h;
+  static double h40 = 40.h;
+  static double h45 = 45.h;
+  static double h50 = 50.h;
+  static double h60 = 60.h;
+  static double h100 = 100.h;
 }
 
 class AppSize {

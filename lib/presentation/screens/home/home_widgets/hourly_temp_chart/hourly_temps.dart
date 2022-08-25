@@ -1,3 +1,4 @@
+import 'package:algoriza_weather/presentation/screens/home/home_widgets/hourly_temp_chart/chart.dart';
 import 'package:flutter/material.dart';
 
 class HourlyTemps extends StatelessWidget {
@@ -5,6 +6,8 @@ class HourlyTemps extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Card(
+      child: LineDefault(),
+    );
   }
 }
