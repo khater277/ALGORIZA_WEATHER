@@ -3,7 +3,6 @@ import 'package:algoriza_weather/cubit/app_states.dart';
 import 'package:algoriza_weather/cubit/bloc_observer.dart';
 import 'package:algoriza_weather/presentation/resources/theme_manager.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_screen.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

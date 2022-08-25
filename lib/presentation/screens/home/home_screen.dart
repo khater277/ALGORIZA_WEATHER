@@ -1,6 +1,7 @@
 import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/cubit/app_states.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
+import 'package:algoriza_weather/presentation/screens/drawer/drawer_view.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/additional_info/additional_info_card.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/head/head.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/hourly_temp_chart/hourly_temps.dart';
@@ -9,8 +10,15 @@ import 'package:algoriza_weather/presentation/screens/home/home_widgets/weakly_w
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +27,14 @@ class HomeScreen extends StatelessWidget {
       builder: (context, state) {
         AppCubit cubit = AppCubit.get(context);
         return Scaffold(
+          key: _scaffoldKey,
           appBar: AppBar(
-            leading: const Icon(Icons.menu),
+            // leading: IconButton(
+            //   onPressed: () {
+            //     _scaffoldKey.currentState!.openDrawer();
+            //   },
+            //   icon: const Icon(Icons.menu),
+            // ),
             toolbarHeight: AppHeight.h80,
           ),
           body: CustomScrollView(
@@ -51,6 +65,7 @@ class HomeScreen extends StatelessWidget {
               )
             ],
           ),
+          drawer: const DrawerView(),
         );
       },
     );

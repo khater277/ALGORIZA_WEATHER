@@ -1,4 +1,5 @@
 import 'package:algoriza_weather/presentation/resources/assets_manager.dart';
+import 'package:algoriza_weather/presentation/resources/strings_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/additional_info/additional_type.dart';
 import 'package:flutter/material.dart';
@@ -18,17 +19,17 @@ class AdditionalInfoCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: const [
             AdditionalType(
-              name: "UV index",
+              name: StringsManager.uv,
               image: ImagesManager.uv,
               info: "High",
             ),
             AdditionalType(
-              name: "Wind",
+              name: StringsManager.wind,
               image: ImagesManager.wind,
               info: "23 km/h",
             ),
             AdditionalType(
-              name: "Humidity",
+              name: StringsManager.humidity,
               image: ImagesManager.humidity,
               info: "31%",
             ),

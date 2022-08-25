@@ -27,6 +27,7 @@ class AppWidth {
 }
 
 class AppHeight {
+  static double h0_7 = 0.7.h;
   static double h1 = 1.h;
   static double h2 = 2.h;
   static double h3 = 3.h;

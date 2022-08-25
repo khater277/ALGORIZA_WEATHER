@@ -11,6 +11,7 @@ class ColorManager {
   static const Color darkGrey = Color(0xFF171717); // for dark card background
   static const Color darkBlue = Color(0xFF2d3741); // for drawer background
   static const Color lightBlue = Color(0xFF8cbaec); // for light card background
+  static const Color button = Color(0xFF4f5762); // for button background
 
   static MaterialColor generateMaterialColor(Color color) {
     return MaterialColor(color.value, {

@@ -1,4 +1,5 @@
 import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
+import 'package:algoriza_weather/presentation/resources/strings_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -51,7 +52,7 @@ class _LineDefaultState extends State<LineDefault> {
       plotAreaBorderWidth: 0,
       // borderColor: Colors.red,
       title: ChartTitle(
-        text: 'Tempretures across the day ',
+        text: StringsManager.chartTitle,
         textStyle: Theme.of(context).textTheme.bodyMedium,
       ),
       margin: EdgeInsets.all(AppSize.s20),
@@ -61,7 +62,7 @@ class _LineDefaultState extends State<LineDefault> {
           borderWidth: AppSize.s1,
           edgeLabelPlacement: EdgeLabelPlacement.shift,
           interval: 1,
-          labelFormat: '{value} pm',
+          labelFormat: '{value} ${StringsManager.pm}',
           labelStyle: Theme.of(context).textTheme.displaySmall,
           majorGridLines: const MajorGridLines(width: 0)),
       primaryYAxis: NumericAxis(

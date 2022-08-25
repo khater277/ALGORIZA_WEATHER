@@ -39,14 +39,14 @@ class ThemeManager {
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
         elevation: 0,
-        primary: ColorManager.blue,
-        textStyle: getRegularStyle(
-          fontColor: ColorManager.white,
-          fontSize: FontSize.s16,
+        primary: ColorManager.button,
+        textStyle: getMediumStyle(
+          fontColor: ColorManager.lightGrey,
+          fontSize: FontSize.s15,
         ),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.sp)),
-        minimumSize: Size(double.infinity, 40.76.h),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppSize.s20)),
+        minimumSize: Size(double.infinity, 40.h),
       )),
 
       ///card
@@ -67,6 +67,7 @@ class ThemeManager {
             getBoldStyle(fontColor: ColorManager.white, fontSize: FontSize.s16),
         bodyLarge: getMediumStyle(
           fontColor: ColorManager.lightGrey,
+          fontSize: FontSize.s13,
         ),
         bodyMedium: getSemiBoldStyle(
             fontColor: ColorManager.white, fontSize: FontSize.s12),

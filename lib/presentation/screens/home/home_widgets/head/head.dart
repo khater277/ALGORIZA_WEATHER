@@ -1,6 +1,5 @@
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/head/city_temp_and_name.dart';
-import 'package:algoriza_weather/presentation/screens/home/home_widgets/head/drawer_button.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/head/temp_deatils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,6 +13,7 @@ class Head extends StatelessWidget {
       pinned: false,
       snap: false,
       floating: false,
+      automaticallyImplyLeading: false,
       expandedHeight: 160.h,
       flexibleSpace: FlexibleSpaceBar(
           background: Padding(

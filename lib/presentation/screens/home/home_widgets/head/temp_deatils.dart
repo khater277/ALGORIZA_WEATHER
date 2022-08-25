@@ -1,3 +1,4 @@
+import 'package:algoriza_weather/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 
 class TempDetails extends StatelessWidget {
@@ -9,11 +10,11 @@ class TempDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "34° / 24° feels like 34°",
+          "34° / 24° ${StringsManager.feelsLike} 34°",
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         Text(
-          "sunday, 2:55 pm",
+          "sunday, 2:55 ${StringsManager.pm}",
           style: Theme.of(context).textTheme.bodyMedium,
         ),
       ],
