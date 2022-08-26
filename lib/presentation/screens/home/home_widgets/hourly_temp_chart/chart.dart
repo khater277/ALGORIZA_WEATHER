@@ -58,7 +58,7 @@ class _LineDefaultState extends State<LineDefault> {
       margin: EdgeInsets.all(AppSize.s20),
       primaryXAxis: NumericAxis(
           autoScrollingMode: AutoScrollingMode.end,
-          borderColor: ColorManager.lightBlue,
+          borderColor: Theme.of(context).cardTheme.color,
           borderWidth: AppSize.s1,
           edgeLabelPlacement: EdgeLabelPlacement.shift,
           interval: 1,
@@ -66,7 +66,7 @@ class _LineDefaultState extends State<LineDefault> {
           labelStyle: Theme.of(context).textTheme.displaySmall,
           majorGridLines: const MajorGridLines(width: 0)),
       primaryYAxis: NumericAxis(
-          borderColor: ColorManager.lightBlue,
+          borderColor: Theme.of(context).cardTheme.color,
           borderWidth: AppSize.s1,
           labelFormat: '{value}°C',
           labelStyle: Theme.of(context).textTheme.displaySmall,

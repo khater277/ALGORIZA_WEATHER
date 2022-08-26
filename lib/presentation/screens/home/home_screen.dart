@@ -1,5 +1,6 @@
 import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/cubit/app_states.dart';
+import 'package:algoriza_weather/presentation/resources/fonts_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:algoriza_weather/presentation/screens/drawer/drawer_view.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/additional_info/additional_info_card.dart';
@@ -29,13 +30,24 @@ class _HomeScreenState extends State<HomeScreen> {
         return Scaffold(
           key: _scaffoldKey,
           appBar: AppBar(
-            // leading: IconButton(
-            //   onPressed: () {
-            //     _scaffoldKey.currentState!.openDrawer();
-            //   },
-            //   icon: const Icon(Icons.menu),
-            // ),
             toolbarHeight: AppHeight.h80,
+            centerTitle: false,
+            titleSpacing: 0,
+            title: Row(
+              children: [
+                Text(
+                  "Alexandria",
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        fontSize: FontSize.s18,
+                      ),
+                ),
+                SizedBox(width: AppWidth.w2),
+                Icon(
+                  Icons.location_on,
+                  size: AppSize.s12,
+                )
+              ],
+            ),
           ),
           body: CustomScrollView(
             physics: const BouncingScrollPhysics(),

@@ -12,7 +12,7 @@ class WeaklyWeather extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: AppHeight.h8),
+        padding: EdgeInsets.symmetric(vertical: AppHeight.h20),
         child: ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -38,7 +38,7 @@ class WeaklyWeather extends StatelessWidget {
                 ]);
           },
           separatorBuilder: (context, index) => SizedBox(
-            height: AppHeight.h10,
+            height: AppHeight.h15,
           ),
         ),
       ),
