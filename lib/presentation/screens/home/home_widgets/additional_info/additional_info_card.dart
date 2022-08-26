@@ -1,3 +1,4 @@
+import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/resources/assets_manager.dart';
 import 'package:algoriza_weather/presentation/resources/strings_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
@@ -5,7 +6,8 @@ import 'package:algoriza_weather/presentation/screens/home/home_widgets/addition
 import 'package:flutter/material.dart';
 
 class AdditionalInfoCard extends StatelessWidget {
-  const AdditionalInfoCard({Key? key}) : super(key: key);
+  final AppCubit cubit;
+  const AdditionalInfoCard({Key? key, required this.cubit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class AdditionalInfoCard extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: const [
+          children: [
             AdditionalType(
               name: StringsManager.uv,
               image: ImagesManager.uv,
@@ -26,12 +28,12 @@ class AdditionalInfoCard extends StatelessWidget {
             AdditionalType(
               name: StringsManager.wind,
               image: ImagesManager.wind,
-              info: "23 km/h",
+              info: "${cubit.currentWeather!.wind!.speed} km/h",
             ),
             AdditionalType(
               name: StringsManager.humidity,
               image: ImagesManager.humidity,
-              info: "31%",
+              info: "${cubit.currentWeather!.main!.humidity}%",
             ),
           ],
         ),

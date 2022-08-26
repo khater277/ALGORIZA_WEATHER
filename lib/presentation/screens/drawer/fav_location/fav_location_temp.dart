@@ -1,3 +1,4 @@
+import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/resources/assets_manager.dart';
 import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
 import 'package:algoriza_weather/presentation/resources/fonts_manager.dart';
@@ -9,6 +10,7 @@ class FavLocationTemp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppCubit cubit = AppCubit.get(context);
     return Padding(
       padding: EdgeInsets.only(left: AppWidth.w20),
       child: Row(
@@ -20,11 +22,12 @@ class FavLocationTemp extends StatelessWidget {
           SizedBox(
             width: AppWidth.w3,
           ),
-          Text(
-            "El Hay El Asher",
-            style: Theme.of(context).textTheme.titleSmall!,
+          Expanded(
+            child: Text(
+              "${cubit.currentWeather!.name}",
+              style: Theme.of(context).textTheme.titleSmall!,
+            ),
           ),
-          const Spacer(),
           Image.asset(
             ImagesManager.sun,
             width: AppSize.s20,
@@ -34,7 +37,7 @@ class FavLocationTemp extends StatelessWidget {
             width: AppWidth.w5,
           ),
           Text(
-            "32°",
+            "${cubit.currentWeather!.main!.temp}°",
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
                   fontWeight: FontWeightManager.medium,
                   fontSize: FontSize.s12,

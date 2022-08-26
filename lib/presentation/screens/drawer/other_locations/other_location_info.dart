@@ -13,8 +13,7 @@ class OtherLocationInfo extends StatelessWidget {
     return Row(
       children: [
         SizedBox(width: AppWidth.w40),
-        const BodyText(text: "Saint Cathrine"),
-        const Spacer(),
+        const Expanded(child: BodyText(text: "Saint Cathrine")),
         Image.asset(
           ImagesManager.sun,
           width: AppSize.s20,

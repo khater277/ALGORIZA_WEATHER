@@ -1,10 +1,12 @@
+import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/resources/assets_manager.dart';
 import 'package:algoriza_weather/presentation/resources/fonts_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class CityTempAndName extends StatelessWidget {
-  const CityTempAndName({Key? key}) : super(key: key);
+  final AppCubit cubit;
+  const CityTempAndName({Key? key, required this.cubit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class CityTempAndName extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "33",
+                    "${cubit.currentWeather!.main!.temp}",
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(
@@ -33,7 +35,7 @@ class CityTempAndName extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Alexandria",
+                    "${cubit.currentWeather!.name}",
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   SizedBox(width: AppWidth.w2),

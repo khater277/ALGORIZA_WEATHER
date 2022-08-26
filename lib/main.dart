@@ -3,6 +3,7 @@ import 'package:algoriza_weather/cubit/app_states.dart';
 import 'package:algoriza_weather/cubit/bloc_observer.dart';
 import 'package:algoriza_weather/presentation/resources/theme_manager.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_screen.dart';
+import 'package:algoriza_weather/services/dio/dio_helper.dart';
 import 'package:algoriza_weather/shared/saved_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ import 'package:get_storage/get_storage.dart';
 void main() async {
   WidgetsFlutterBinding();
   await GetStorage.init();
+  DioHelper.init();
   isDark = GetStorage().read('isDark') ?? false;
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
@@ -28,7 +30,9 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return BlocProvider(
-          create: (BuildContext context) => AppCubit()..handelAllCities(),
+          create: (BuildContext context) => AppCubit()
+            ..handelAllCities()
+            ..getCurrentWeather(),
           child: BlocConsumer<AppCubit, AppStates>(
             listener: (BuildContext context, state) {},
             builder: (BuildContext context, state) {

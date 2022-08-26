@@ -1,3 +1,4 @@
+import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/head/city_temp_and_name.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/head/temp_deatils.dart';
@@ -5,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Head extends StatelessWidget {
-  const Head({Key? key}) : super(key: key);
+  final AppCubit cubit;
+  const Head({Key? key, required this.cubit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +27,11 @@ class Head extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CityTempAndName(),
+                CityTempAndName(cubit: cubit),
                 SizedBox(height: AppHeight.h20),
-                const TempDetails(),
+                TempDetails(
+                  cubit: cubit,
+                ),
               ],
             ),
           ],
