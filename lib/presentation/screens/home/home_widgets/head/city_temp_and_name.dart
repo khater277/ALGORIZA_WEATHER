@@ -20,7 +20,7 @@ class CityTempAndName extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${cubit.currentWeather!.main!.temp}",
+                    "${cubit.completeWeather!.current!.temp}",
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(
@@ -35,7 +35,7 @@ class CityTempAndName extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "${cubit.currentWeather!.name}",
+                    "${cubit.allCities[0].city}",
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   SizedBox(width: AppWidth.w2),

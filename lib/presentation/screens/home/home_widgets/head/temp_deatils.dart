@@ -8,9 +8,9 @@ class TempDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double min = cubit.currentWeather!.main!.temp_min!;
-    double max = cubit.currentWeather!.main!.temp_max!;
-    double feelsLike = cubit.currentWeather!.main!.feels_like!;
+    double min = cubit.completeWeather!.daily![0].temp!.min!;
+    double max = cubit.completeWeather!.daily![0].temp!.max!;
+    double feelsLike = cubit.completeWeather!.current!.feels_like!;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

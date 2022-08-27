@@ -1,16 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'current_weather.dart';
+part of 'hourly_weather.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CurrentWeather _$$_CurrentWeatherFromJson(Map<String, dynamic> json) =>
-    _$_CurrentWeather(
+_$_HourlyWeather _$$_HourlyWeatherFromJson(Map<String, dynamic> json) =>
+    _$_HourlyWeather(
       dt: json['dt'] as int?,
-      sunrise: json['sunrise'] as int?,
-      sunset: json['sunset'] as int?,
       temp: (json['temp'] as num?)?.toDouble(),
       feels_like: (json['feels_like'] as num?)?.toDouble(),
       pressure: json['pressure'] as int?,
@@ -24,13 +22,12 @@ _$_CurrentWeather _$$_CurrentWeatherFromJson(Map<String, dynamic> json) =>
       weather: (json['weather'] as List<dynamic>?)
           ?.map((e) => Weather.fromJson(e as Map<String, dynamic>))
           .toList(),
+      pop: (json['pop'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$$_CurrentWeatherToJson(_$_CurrentWeather instance) =>
+Map<String, dynamic> _$$_HourlyWeatherToJson(_$_HourlyWeather instance) =>
     <String, dynamic>{
       'dt': instance.dt,
-      'sunrise': instance.sunrise,
-      'sunset': instance.sunset,
       'temp': instance.temp,
       'feels_like': instance.feels_like,
       'pressure': instance.pressure,
@@ -42,19 +39,5 @@ Map<String, dynamic> _$$_CurrentWeatherToJson(_$_CurrentWeather instance) =>
       'wind_speed': instance.wind_speed,
       'wind_deg': instance.wind_deg,
       'weather': instance.weather,
-    };
-
-_$_Weather _$$_WeatherFromJson(Map<String, dynamic> json) => _$_Weather(
-      id: json['id'] as int?,
-      main: json['main'] as String?,
-      description: json['description'] as String?,
-      icon: json['icon'] as String?,
-    );
-
-Map<String, dynamic> _$$_WeatherToJson(_$_Weather instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'main': instance.main,
-      'description': instance.description,
-      'icon': instance.icon,
+      'pop': instance.pop,
     };

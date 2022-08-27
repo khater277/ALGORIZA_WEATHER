@@ -1,7 +1,7 @@
 import 'package:algoriza_weather/cubit/app_states.dart';
 import 'package:algoriza_weather/domain/cities/cities.dart';
 import 'package:algoriza_weather/domain/models/city_model/city_model.dart';
-import 'package:algoriza_weather/domain/models/current_weather/current_weather.dart';
+import 'package:algoriza_weather/domain/models/complete_weather/complete_weather.dart';
 import 'package:algoriza_weather/services/dio/dio_helper.dart';
 import 'package:algoriza_weather/services/dio/dio_helper.dart';
 import 'package:algoriza_weather/shared/saved_data.dart';
@@ -28,16 +28,16 @@ class AppCubit extends Cubit<AppStates> {
     emit(HandelAllCitiesState());
   }
 
-  CurrentWeather? currentWeather;
-  void getCurrentWeather() {
+  CompleteWeather? completeWeather;
+  void getWeather() {
     emit(AppLoadingState());
-    DioHelper.getCurrentWeather(
+    DioHelper.getWeather(
       lat: allCities[0].lat!,
       lon: allCities[0].lng!,
     ).then((value) {
       // print(value.data);
-      Map<String, dynamic> data = value.data;
-      currentWeather = CurrentWeather.fromJson(data);
+      // Map<String, dynamic> data = value.data;
+      completeWeather = CompleteWeather.fromJson(value.data);
       // print(currentWeather!.name);
       emit(GetCurrentWeatherState());
     }).catchError((error) {

@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   title: Row(
                     children: [
                       Text(
-                        "${cubit.currentWeather!.name}",
+                        "${cubit.allCities[0].city}",
                         style:
                             Theme.of(context).textTheme.titleMedium!.copyWith(
                                   fontSize: FontSize.s18,

@@ -23,17 +23,17 @@ class AdditionalInfoCard extends StatelessWidget {
             AdditionalType(
               name: StringsManager.uv,
               image: ImagesManager.uv,
-              info: "High",
+              info: "${cubit.completeWeather!.current!.uvi}",
             ),
             AdditionalType(
               name: StringsManager.wind,
               image: ImagesManager.wind,
-              info: "${cubit.currentWeather!.wind!.speed} km/h",
+              info: "${cubit.completeWeather!.current!.wind_speed} km/h",
             ),
             AdditionalType(
               name: StringsManager.humidity,
               image: ImagesManager.humidity,
-              info: "${cubit.currentWeather!.main!.humidity}%",
+              info: "${cubit.completeWeather!.current!.humidity}%",
             ),
           ],
         ),

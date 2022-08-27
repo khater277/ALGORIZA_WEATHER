@@ -24,7 +24,7 @@ class FavLocationTemp extends StatelessWidget {
           ),
           Expanded(
             child: Text(
-              "${cubit.currentWeather!.name}",
+              "${cubit.allCities[0].city}",
               style: Theme.of(context).textTheme.titleSmall!,
             ),
           ),
@@ -37,7 +37,7 @@ class FavLocationTemp extends StatelessWidget {
             width: AppWidth.w5,
           ),
           Text(
-            "${cubit.currentWeather!.main!.temp}°",
+            "${cubit.completeWeather!.current!.temp}°",
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
                   fontWeight: FontWeightManager.medium,
                   fontSize: FontSize.s12,

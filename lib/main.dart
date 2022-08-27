@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         return BlocProvider(
           create: (BuildContext context) => AppCubit()
             ..handelAllCities()
-            ..getCurrentWeather(),
+            ..getWeather(),
           child: BlocConsumer<AppCubit, AppStates>(
             listener: (BuildContext context, state) {},
             builder: (BuildContext context, state) {

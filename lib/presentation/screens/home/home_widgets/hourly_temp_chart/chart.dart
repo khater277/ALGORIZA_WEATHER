@@ -1,6 +1,9 @@
+import 'package:algoriza_weather/cubit/app_cubit.dart';
+import 'package:algoriza_weather/domain/models/hourly_weather/hourly_weather.dart';
 import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
 import 'package:algoriza_weather/presentation/resources/strings_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
+import 'package:algoriza_weather/shared/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -14,23 +17,29 @@ class LineDefault extends StatefulWidget {
 class _LineDefaultState extends State<LineDefault> {
   _LineDefaultState();
 
-  List<_ChartData>? chartData;
+  List<_ChartData> chartData = [];
   double? maxY;
   double? minY;
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
   @override
   void initState() {
-    chartData = <_ChartData>[
-      _ChartData(3, 34),
-      _ChartData(4, 34),
-      _ChartData(5, 33),
-      _ChartData(6, 33),
-      _ChartData(7, 32),
-      _ChartData(8, 31),
-      _ChartData(9, 31),
-    ];
-    minY = chartData![0].y;
-    maxY = chartData![0].y;
-    for (var element in chartData!) {
+    AppCubit cubit = AppCubit.get(context);
+    TimeOfDay currentTime = TimeOfDay.now();
+    for (int i = 0; i < 24; i++) {
+      HourlyWeather element = cubit.completeWeather!.hourly![i];
+      TimeOfDay time = getTime(uinxTime: element.dt!);
+      bool condition = currentTime.hour <= time.hour || (time.hour - 19 >= 0);
+      if (condition) {
+        chartData.add(_ChartData(
+          double.parse(time.hour.toString()),
+          element.temp!,
+        ));
+      }
+    }
+
+    minY = chartData[0].y;
+    maxY = chartData[0].y;
+    for (var element in chartData) {
       if (element.y > maxY!) {
         maxY = element.y;
       }
@@ -61,9 +70,11 @@ class _LineDefaultState extends State<LineDefault> {
           borderColor: Theme.of(context).cardTheme.color,
           borderWidth: AppSize.s1,
           edgeLabelPlacement: EdgeLabelPlacement.shift,
-          interval: 1,
-          labelFormat: '{value} ${StringsManager.pm}',
+          interval: 2,
+          labelFormat: '{value}',
           labelStyle: Theme.of(context).textTheme.displaySmall,
+          minimum: chartData.first.x - 1,
+          maximum: chartData.last.x + 1,
           majorGridLines: const MajorGridLines(width: 0)),
       primaryYAxis: NumericAxis(
           borderColor: Theme.of(context).cardTheme.color,
@@ -86,7 +97,7 @@ class _LineDefaultState extends State<LineDefault> {
     return <LineSeries<_ChartData, num>>[
       LineSeries<_ChartData, num>(
           animationDuration: 2500,
-          dataSource: chartData!,
+          dataSource: chartData,
           width: 1.5,
           name: '',
           color: ColorManager.lightGrey,
@@ -102,7 +113,7 @@ class _LineDefaultState extends State<LineDefault> {
 
   @override
   void dispose() {
-    chartData!.clear();
+    chartData.clear();
     super.dispose();
   }
 }
