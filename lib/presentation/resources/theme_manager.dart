@@ -91,23 +91,23 @@ class ThemeManager {
             fontColor: Colors.red.withOpacity(0.6), fontSize: FontSize.s12),
         focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.sp),
-            borderSide: BorderSide(
-              color: Colors.red.withOpacity(0.3),
+            borderSide: const BorderSide(
+              color: ColorManager.darkBlue,
             )),
         errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.sp),
-            borderSide: BorderSide(
-              color: Colors.red.withOpacity(0.3),
+            borderSide: const BorderSide(
+              color: ColorManager.darkBlue,
             )),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.sp),
             borderSide: const BorderSide(
-              color: ColorManager.blue,
+              color: ColorManager.darkBlue,
             )),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.sp),
             borderSide: const BorderSide(
-              color: ColorManager.blue,
+              color: ColorManager.darkBlue,
             )),
       ),
 
@@ -201,23 +201,23 @@ class ThemeManager {
             fontColor: Colors.red.withOpacity(0.6), fontSize: FontSize.s12),
         focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.sp),
-            borderSide: BorderSide(
-              color: Colors.red.withOpacity(0.3),
+            borderSide: const BorderSide(
+              color: ColorManager.darkBlue,
             )),
         errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.sp),
-            borderSide: BorderSide(
-              color: Colors.red.withOpacity(0.3),
+            borderSide: const BorderSide(
+              color: ColorManager.darkBlue,
             )),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.sp),
             borderSide: const BorderSide(
-              color: ColorManager.blue,
+              color: ColorManager.darkBlue,
             )),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.sp),
             borderSide: const BorderSide(
-              color: ColorManager.blue,
+              color: ColorManager.darkBlue,
             )),
       ),
 

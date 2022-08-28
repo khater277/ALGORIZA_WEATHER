@@ -28,21 +28,25 @@ class FavLocationTemp extends StatelessWidget {
               style: Theme.of(context).textTheme.titleSmall!,
             ),
           ),
-          Image.asset(
-            ImagesManager.sun,
-            width: AppSize.s20,
-            height: AppSize.s20,
-          ),
-          SizedBox(
-            width: AppWidth.w5,
-          ),
-          Text(
-            "${cubit.completeWeather!.current!.temp}°",
-            style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                  fontWeight: FontWeightManager.medium,
-                  fontSize: FontSize.s12,
-                  color: ColorManager.lightGrey,
-                ),
+          Row(
+            children: [
+              Image.asset(
+                ImagesManager.sun,
+                width: AppSize.s20,
+                height: AppSize.s20,
+              ),
+              SizedBox(
+                width: AppWidth.w5,
+              ),
+              Text(
+                "${cubit.completeWeather!.current!.temp}°",
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                      fontWeight: FontWeightManager.medium,
+                      fontSize: FontSize.s12,
+                      color: ColorManager.lightGrey,
+                    ),
+              ),
+            ],
           ),
         ],
       ),

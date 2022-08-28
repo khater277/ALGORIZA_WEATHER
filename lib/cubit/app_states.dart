@@ -10,4 +10,6 @@ class ChangeThemeState extends AppStates {}
 
 class HandelAllCitiesState extends AppStates {}
 
+class ChangeFavLocationState extends AppStates {}
+
 class GetCurrentWeatherState extends AppStates {}

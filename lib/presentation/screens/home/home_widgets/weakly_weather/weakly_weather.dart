@@ -1,12 +1,16 @@
+import 'package:algoriza_weather/cubit/app_cubit.dart';
+import 'package:algoriza_weather/domain/models/daily_weather/daily_weather.dart';
 import 'package:algoriza_weather/presentation/resources/assets_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/weakly_weather/day_name.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/weakly_weather/rain_possibility.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/weakly_weather/temp_degree.dart';
+import 'package:algoriza_weather/shared/functions.dart';
 import 'package:flutter/material.dart';
 
 class WeaklyWeather extends StatelessWidget {
-  const WeaklyWeather({Key? key}) : super(key: key);
+  final AppCubit cubit;
+  const WeaklyWeather({Key? key, required this.cubit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,25 +20,48 @@ class WeaklyWeather extends StatelessWidget {
         child: ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: 7,
+          itemCount: cubit.completeWeather!.daily!.length,
           itemBuilder: (context, index) {
+            DailyWeather dailyWeather = cubit.completeWeather!.daily![index];
             return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  const DayName(),
-                  const RainPossibility(),
-                  Image.asset(
-                    ImagesManager.sun,
-                    width: AppSize.s22,
-                    height: AppSize.s22,
+                  Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: AppWidth.w15),
+                        child:
+                            DayName(name: getDayFromDate(dt: dailyWeather.dt!)),
+                      )),
+                  RainPossibility(rain: dailyWeather.rain ?? 0),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: AppWidth.w10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image.asset(
+                          ImagesManager.sun,
+                          width: AppSize.s22,
+                          height: AppSize.s22,
+                        ),
+                        SizedBox(width: AppWidth.w10),
+                        Image.asset(
+                          ImagesManager.night,
+                          width: AppSize.s18,
+                          height: AppSize.s18,
+                        ),
+                      ],
+                    ),
                   ),
-                  Image.asset(
-                    ImagesManager.night,
-                    width: AppSize.s18,
-                    height: AppSize.s18,
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        TempDegree(degree: dailyWeather.temp!.max!.floor()),
+                        TempDegree(degree: dailyWeather.temp!.min!.floor()),
+                      ],
+                    ),
                   ),
-                  const TempDegree(degree: "34"),
-                  const TempDegree(degree: "24"),
                 ]);
           },
           separatorBuilder: (context, index) => SizedBox(

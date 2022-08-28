@@ -1,13 +1,17 @@
+import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/hourly_temp_chart/chart.dart';
 import 'package:flutter/material.dart';
 
 class HourlyTemps extends StatelessWidget {
-  const HourlyTemps({Key? key}) : super(key: key);
+  final AppCubit cubit;
+  const HourlyTemps({Key? key, required this.cubit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Card(
-      child: LineDefault(),
+    return Card(
+      child: LineDefault(
+        cubit: cubit,
+      ),
     );
   }
 }

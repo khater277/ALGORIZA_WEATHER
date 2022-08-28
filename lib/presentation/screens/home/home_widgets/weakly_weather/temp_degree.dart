@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TempDegree extends StatelessWidget {
-  final String degree;
+  final int degree;
   const TempDegree({Key? key, required this.degree}) : super(key: key);
 
   @override

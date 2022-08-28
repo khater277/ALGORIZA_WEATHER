@@ -4,7 +4,8 @@ import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class RainPossibility extends StatelessWidget {
-  const RainPossibility({Key? key}) : super(key: key);
+  final double rain;
+  const RainPossibility({Key? key, required this.rain}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class RainPossibility extends StatelessWidget {
           width: AppWidth.w1,
         ),
         Text(
-          "2%",
+          "$rain%",
           style: Theme.of(context).textTheme.bodySmall!.copyWith(
                 color: ColorManager.lightGrey,
                 fontWeight: FontWeightManager.semiBold,

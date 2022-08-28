@@ -67,9 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(height: AppHeight.h30),
-                            const HourlyTemps(),
+                            HourlyTemps(cubit: cubit),
                             SizedBox(height: AppHeight.h10),
-                            const WeaklyWeather(),
+                            WeaklyWeather(cubit: cubit),
                             SizedBox(height: AppHeight.h10),
                             SunriseSunsetCard(cubit: cubit),
                             SizedBox(height: AppHeight.h10),

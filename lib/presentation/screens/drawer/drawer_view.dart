@@ -40,7 +40,7 @@ class DrawerView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: AppHeight.h25),
-                const FavLocation(),
+                FavLocation(cubit: AppCubit.get(context)),
                 Container(
                   width: double.infinity,
                   height: AppHeight.h0_7,
