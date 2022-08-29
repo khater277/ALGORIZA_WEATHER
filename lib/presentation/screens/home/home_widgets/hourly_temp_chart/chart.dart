@@ -36,10 +36,12 @@ class _LineDefaultState extends State<LineDefault> {
           borderColor: Theme.of(context).cardTheme.color,
           borderWidth: AppSize.s1,
           edgeLabelPlacement: EdgeLabelPlacement.shift,
-          interval: 2,
+          interval: widget.cubit.chartData.length > 10 ? 2 : 1,
           labelFormat: '{value}',
           labelStyle: Theme.of(context).textTheme.displaySmall,
-          minimum: widget.cubit.chartData.first.x - 1,
+          minimum: widget.cubit.chartData.first.x == 0
+              ? 0
+              : widget.cubit.chartData.first.x - 1,
           maximum: widget.cubit.chartData.last.x + 1,
           majorGridLines: const MajorGridLines(width: 0)),
       primaryYAxis: NumericAxis(
@@ -48,7 +50,7 @@ class _LineDefaultState extends State<LineDefault> {
           labelFormat: '{value}°C',
           labelStyle: Theme.of(context).textTheme.displaySmall,
           edgeLabelPlacement: EdgeLabelPlacement.shift,
-          interval: 1,
+          interval: widget.cubit.chartData.length > 8 ? 2 : 1,
           minimum: widget.cubit.minY - 1,
           maximum: widget.cubit.maxY + 1,
           majorGridLines: const MajorGridLines(width: 0)),

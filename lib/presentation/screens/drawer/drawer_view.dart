@@ -11,7 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DrawerView extends StatelessWidget {
-  const DrawerView({Key? key}) : super(key: key);
+  final AppCubit cubit;
+  final AppStates state;
+  const DrawerView({Key? key, required this.cubit, required this.state})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,14 +43,14 @@ class DrawerView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: AppHeight.h25),
-                FavLocation(cubit: AppCubit.get(context)),
+                FavLocation(cubit: cubit, state: state),
                 Container(
                   width: double.infinity,
                   height: AppHeight.h0_7,
                   color: ColorManager.lightGrey,
                 ),
                 SizedBox(height: AppHeight.h20),
-                const OtherLocations(),
+                OtherLocations(),
                 SizedBox(height: AppHeight.h20),
                 Container(
                   width: double.infinity,

@@ -1,3 +1,4 @@
+import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:algoriza_weather/presentation/screens/drawer/other_locations/manage_locations_button.dart';
 import 'package:algoriza_weather/presentation/screens/drawer/other_locations/other_location_info.dart';
@@ -9,14 +10,24 @@ class OtherLocations extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const OtherLocationTitle(),
-        SizedBox(height: AppHeight.h20),
-        const OtherLocationInfo(),
-        SizedBox(height: AppHeight.h20),
-        const ManageLocationButton(),
-      ],
+    return Expanded(
+      child: Column(
+        children: [
+          const OtherLocationTitle(),
+          Expanded(
+            child: ListView.separated(
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) => const OtherLocationInfo(),
+              separatorBuilder: (context, index) =>
+                  SizedBox(height: AppHeight.h20),
+              itemCount: 7,
+            ),
+          ),
+          SizedBox(height: AppHeight.h20),
+          ManageLocationButton(),
+        ],
+      ),
     );
   }
 }

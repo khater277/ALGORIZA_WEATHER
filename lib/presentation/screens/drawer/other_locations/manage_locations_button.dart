@@ -1,5 +1,8 @@
+import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/resources/fonts_manager.dart';
+import 'package:algoriza_weather/presentation/resources/navigation_manager.dart';
 import 'package:algoriza_weather/presentation/resources/strings_manager.dart';
+import 'package:algoriza_weather/presentation/screens/manage_locations/manage_locations_screen.dart';
 import 'package:flutter/material.dart';
 
 class ManageLocationButton extends StatelessWidget {
@@ -8,7 +11,9 @@ class ManageLocationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Go.to(context: context, screen: ManageLocationsScreen());
+      },
       child: Text(
         StringsManager.manageLocations,
         style: Theme.of(context)

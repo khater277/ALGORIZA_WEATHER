@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 class ColorManager {
   static const Color black = Colors.black;
   static const Color white = Colors.white;
+  static const Color red = Colors.red;
+  static const Color yellow = Colors.yellow;
+  static const Color green = Colors.green;
   static const Color blue = Color(0xFF7cb2f2);
   static const Color grey = Color(0xFF727272); // for text field hint
   static const Color lightGrey = Color(0xFFd8d9dd); // for drawer text

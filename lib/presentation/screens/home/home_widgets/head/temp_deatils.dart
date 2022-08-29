@@ -2,7 +2,6 @@ import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/resources/strings_manager.dart';
 import 'package:algoriza_weather/shared/functions.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class TempDetails extends StatefulWidget {
   final AppCubit cubit;
@@ -13,17 +12,17 @@ class TempDetails extends StatefulWidget {
 }
 
 class _TempDetailsState extends State<TempDetails> {
-  late double min;
-  late double max;
-  late double feelsLike;
+  late int min;
+  late int max;
+  late int feelsLike;
   late DateTime date;
   late String dayName;
   late TimeOfDay timeOfDay;
   @override
   void initState() {
-    min = widget.cubit.completeWeather!.daily![0].temp!.min!;
-    max = widget.cubit.completeWeather!.daily![0].temp!.max!;
-    feelsLike = widget.cubit.completeWeather!.current!.feels_like!;
+    min = widget.cubit.completeWeather!.daily![0].temp!.min!.round();
+    max = widget.cubit.completeWeather!.daily![0].temp!.max!.round();
+    feelsLike = widget.cubit.completeWeather!.current!.feels_like!.round();
     date = DateTime.fromMillisecondsSinceEpoch(
         widget.cubit.completeWeather!.current!.dt! * 1000);
     timeOfDay = TimeOfDay.fromDateTime(date);
@@ -40,7 +39,7 @@ class _TempDetailsState extends State<TempDetails> {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         Text(
-          "${getDayFromDate(dt: widget.cubit.completeWeather!.current!.dt!)} ${timeOfDay.hour}:${timeOfDay.minute} ${timeOfDay.period.name}",
+          "${getDayFromDate(dt: widget.cubit.completeWeather!.current!.dt!)} ${timeOfDay.hour == 0 ? "12" : timeOfDay.hour.toString()}:${timeOfDay.minute} ${timeOfDay.period.name}",
           style: Theme.of(context).textTheme.bodyMedium,
         ),
       ],

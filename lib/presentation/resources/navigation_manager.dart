@@ -11,6 +11,10 @@ class Go {
     );
   }
 
+  static void back({required BuildContext context}) {
+    Navigator.pop(context);
+  }
+
   static void off({
     required BuildContext context,
     required Widget screen,

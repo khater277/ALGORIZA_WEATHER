@@ -3,12 +3,14 @@ import 'dart:math';
 import 'package:algoriza_weather/cubit/app_states.dart';
 import 'package:algoriza_weather/domain/cities/cities.dart';
 import 'package:algoriza_weather/domain/models/chart_data/chart_data.dart';
-import 'package:algoriza_weather/domain/models/city_model/city_model.dart';
+import 'package:algoriza_weather/domain/models/city/city.dart';
 import 'package:algoriza_weather/domain/models/complete_weather/complete_weather.dart';
 import 'package:algoriza_weather/domain/models/daily_weather/daily_weather.dart';
 import 'package:algoriza_weather/domain/models/hourly_weather/hourly_weather.dart';
-import 'package:algoriza_weather/services/dio/dio_helper.dart';
-import 'package:algoriza_weather/services/dio/dio_helper.dart';
+import 'package:algoriza_weather/services/api/dio_helper.dart';
+import 'package:algoriza_weather/services/hive/keys.dart';
+import 'package:algoriza_weather/services/hive/city/city_hive.dart';
+import 'package:algoriza_weather/services/hive/hive_helper.dart';
 import 'package:algoriza_weather/shared/functions.dart';
 import 'package:algoriza_weather/shared/saved_data.dart';
 import 'package:flutter/material.dart';
@@ -25,24 +27,35 @@ class AppCubit extends Cubit<AppStates> {
     emit(ChangeThemeState());
   }
 
-  List<CityModel> allCities = [];
+  List<City> allCities = [];
+  List<City> searchCities = [];
   List<String> allCitiesNames = [];
-  String? currentLocation;
+  CityHive favLocation = HiveHelper.getCity(
+      box: HiveHelper.favLocationBox!, key: HiveKeys.favLocation);
   void handelAllCities() {
     allCities = [];
     allCitiesNames = [];
     for (var city in cities) {
-      CityModel cityModel = CityModel.fromJson(city);
-      allCitiesNames.add(cityModel.city!);
+      City cityModel = City.fromJson(city);
+      allCitiesNames.add(cityModel.name!);
       allCities.add(cityModel);
     }
-    currentLocation = allCities.first.city!;
+    searchCities = allCities;
     emit(HandelAllCitiesState());
   }
 
-  void changeFavLocation({required String location}) {
-    currentLocation = location;
-    emit(ChangeFavLocationState());
+  void changeFavLocation({required City city}) {
+    CityHive cityHive = CityHive(
+      latitude: city.latitude,
+      longitude: city.longitude,
+      cityId: city.cityId,
+      name: city.name,
+    );
+    favLocation = cityHive;
+    HiveHelper.putCity(
+        box: HiveHelper.favLocationBox!, key: HiveKeys.favLocation, city: city);
+    getWeather(cityHive: cityHive);
+    // emit(ChangeFavLocationState());
   }
 
   CompleteWeather? completeWeather;
@@ -50,12 +63,19 @@ class AppCubit extends Cubit<AppStates> {
   double minY = 0;
   double maxY = 0;
 
-  void getWeather() {
-    emit(AppLoadingState());
+  void getWeather({@required CityHive? cityHive}) {
+    if (cityHive == null) {
+      emit(AppLoadingState());
+    } else {
+      emit(GetFavLocationWeatherLoadingState());
+    }
     DioHelper.getWeather(
-      lat: allCities[0].lat!,
-      lon: allCities[0].lng!,
+      lat: favLocation.latitude!.toString(),
+      lon: favLocation.longitude!.toString(),
     ).then((value) {
+      chartData = [];
+      minY = 0;
+      maxY = 0;
       // weather data from api
       CompleteWeather weather = CompleteWeather.fromJson(value.data);
       // 7 days weather info
@@ -79,9 +99,9 @@ class AppCubit extends Cubit<AppStates> {
         daily: dailyWeather,
         hourly: hourlyWeather,
       );
-      emit(GetCurrentWeatherState());
+      emit(GetWeatherState());
     }).catchError((error) {
-      print("ERROR===>$error");
+      debugPrint("ERROR===>$error");
       emit(AppErrorState());
     });
   }
@@ -93,14 +113,53 @@ class AppCubit extends Cubit<AppStates> {
     TimeOfDay currentTime = TimeOfDay.now();
     for (int i = 0; i < 24; i++) {
       TimeOfDay time = getTime(uinxTime: weather.hourly![i].dt!);
-      bool condition = currentTime.hour <= time.hour || (time.hour - 19 >= 0);
+      bool condition = currentTime.hour <= time.hour;
       if (condition) {
         chartData.add(ChartData(
           double.parse(time.hour.toString()),
-          weather.hourly![i].temp!,
+          weather.hourly![i].temp!.roundToDouble(),
         ));
         hourlyWeather.add(weather.hourly![i]);
       }
     }
+  }
+
+  List<CityHive> otherLocations =
+      HiveHelper.getBoxCities(box: HiveHelper.otherLocationsBox!);
+  void addNewLocation({
+    required CityHive cityHive,
+    required int index,
+  }) {
+    emit(AddNewLocationLoadingState());
+    HiveHelper.addCity(
+      box: HiveHelper.otherLocationsBox!,
+      city: cityHive,
+      index: index,
+    );
+    otherLocations =
+        HiveHelper.getBoxCities(box: HiveHelper.otherLocationsBox!);
+    print(otherLocations);
+    emit(AddNewLocationState());
+  }
+
+  void removeLocation({required int index}) {
+    emit(AddNewLocationLoadingState());
+    HiveHelper.removeCity(box: HiveHelper.otherLocationsBox!, index: index);
+    otherLocations =
+        HiveHelper.getBoxCities(box: HiveHelper.otherLocationsBox!);
+    emit(RemoveLocationState());
+  }
+
+  void citySearch({required String name}) {
+    searchCities = allCities.where((element) {
+      return element.name!.toLowerCase().contains(name.toLowerCase());
+    }).toList();
+    print(searchCities.length);
+    emit(CitySearchState());
+  }
+
+  void clearSearch() {
+    searchCities = allCities;
+    emit(CitySearchState());
   }
 }

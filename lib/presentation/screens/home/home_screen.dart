@@ -9,6 +9,7 @@ import 'package:algoriza_weather/presentation/screens/home/home_widgets/head/hea
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/hourly_temp_chart/hourly_temps.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/surise_sunset/sunrise_sunset_card.dart';
 import 'package:algoriza_weather/presentation/screens/home/home_widgets/weakly_weather/weakly_weather.dart';
+import 'package:algoriza_weather/services/hive/hive_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   title: Row(
                     children: [
                       Text(
-                        "${cubit.allCities[0].city}",
+                        "${cubit.favLocation.name}",
                         style:
                             Theme.of(context).textTheme.titleMedium!.copyWith(
                                   fontSize: FontSize.s18,
@@ -80,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   ],
                 ),
-                drawer: const DrawerView(),
+                drawer: DrawerView(cubit: cubit, state: state),
               )
             : const Scaffold(
                 body: Center(
