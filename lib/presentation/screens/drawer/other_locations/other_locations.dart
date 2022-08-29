@@ -6,28 +6,29 @@ import 'package:algoriza_weather/presentation/screens/drawer/other_locations/oth
 import 'package:flutter/material.dart';
 
 class OtherLocations extends StatelessWidget {
-  const OtherLocations({Key? key}) : super(key: key);
+  final AppCubit cubit;
+  const OtherLocations({Key? key, required this.cubit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          const OtherLocationTitle(),
-          Expanded(
-            child: ListView.separated(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) => const OtherLocationInfo(),
-              separatorBuilder: (context, index) =>
-                  SizedBox(height: AppHeight.h20),
-              itemCount: 7,
-            ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const OtherLocationTitle(),
+        LimitedBox(
+          maxHeight: AppHeight.h100,
+          child: ListView.separated(
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, index) => const OtherLocationInfo(),
+            separatorBuilder: (context, index) =>
+                SizedBox(height: AppHeight.h20),
+            itemCount: cubit.otherLocations.length,
           ),
-          SizedBox(height: AppHeight.h20),
-          ManageLocationButton(),
-        ],
-      ),
+        ),
+        SizedBox(height: AppHeight.h20),
+        const ManageLocationButton(),
+      ],
     );
   }
 }

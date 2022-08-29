@@ -50,24 +50,30 @@ class DrawerView extends StatelessWidget {
                   color: ColorManager.lightGrey,
                 ),
                 SizedBox(height: AppHeight.h20),
-                OtherLocations(),
-                SizedBox(height: AppHeight.h20),
-                Container(
-                  width: double.infinity,
-                  height: 0.35,
-                  color: ColorManager.lightGrey,
-                ),
-                SizedBox(height: AppHeight.h20),
-                const ThemeSwitcher(),
-                SizedBox(height: AppHeight.h20),
-                const DrawerBottomRow(
-                  icon: Icons.info_outline_rounded,
-                  text: StringsManager.report,
-                ),
-                SizedBox(height: AppHeight.h20),
-                const DrawerBottomRow(
-                  icon: Icons.headphones_outlined,
-                  text: StringsManager.contactUs,
+                OtherLocations(cubit: cubit),
+                Expanded(
+                  child: Column(
+                    children: [
+                      SizedBox(height: AppHeight.h20),
+                      Container(
+                        width: double.infinity,
+                        height: 0.35,
+                        color: ColorManager.lightGrey,
+                      ),
+                      SizedBox(height: AppHeight.h20),
+                      const ThemeSwitcher(),
+                      SizedBox(height: AppHeight.h20),
+                      const DrawerBottomRow(
+                        icon: Icons.info_outline_rounded,
+                        text: StringsManager.report,
+                      ),
+                      SizedBox(height: AppHeight.h20),
+                      const DrawerBottomRow(
+                        icon: Icons.headphones_outlined,
+                        text: StringsManager.contactUs,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
