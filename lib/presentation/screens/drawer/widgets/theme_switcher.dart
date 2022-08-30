@@ -1,7 +1,7 @@
 import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
 import 'package:algoriza_weather/presentation/resources/strings_manager.dart';
-import 'package:algoriza_weather/presentation/screens/drawer/drawer_bottom_row.dart';
+import 'package:algoriza_weather/presentation/screens/drawer/widgets/drawer_bottom_row.dart';
 import 'package:algoriza_weather/shared/saved_data.dart';
 import 'package:flutter/material.dart';
 

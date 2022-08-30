@@ -1,6 +1,6 @@
 import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
-import 'package:algoriza_weather/presentation/screens/drawer/body_text.dart';
+import 'package:algoriza_weather/presentation/screens/drawer/widgets/body_text.dart';
 import 'package:flutter/material.dart';
 
 class DrawerBottomRow extends StatelessWidget {

@@ -3,10 +3,10 @@ import 'package:algoriza_weather/cubit/app_states.dart';
 import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
 import 'package:algoriza_weather/presentation/resources/strings_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
-import 'package:algoriza_weather/presentation/screens/drawer/fav_location/fav_location.dart';
-import 'package:algoriza_weather/presentation/screens/drawer/other_locations/other_locations.dart';
-import 'package:algoriza_weather/presentation/screens/drawer/drawer_bottom_row.dart';
-import 'package:algoriza_weather/presentation/screens/drawer/theme_switcher.dart';
+import 'package:algoriza_weather/presentation/screens/drawer/widgets/fav_location/fav_location.dart';
+import 'package:algoriza_weather/presentation/screens/drawer/widgets/other_locations/other_locations.dart';
+import 'package:algoriza_weather/presentation/screens/drawer/widgets/drawer_bottom_row.dart';
+import 'package:algoriza_weather/presentation/screens/drawer/widgets/theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

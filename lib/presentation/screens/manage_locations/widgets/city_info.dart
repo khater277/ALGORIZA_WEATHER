@@ -3,7 +3,7 @@ import 'package:algoriza_weather/cubit/app_states.dart';
 import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
 import 'package:algoriza_weather/presentation/resources/icons_broken.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
-import 'package:algoriza_weather/presentation/screens/drawer/body_text.dart';
+import 'package:algoriza_weather/presentation/screens/drawer/widgets/body_text.dart';
 import 'package:algoriza_weather/services/hive/city/city_hive.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages

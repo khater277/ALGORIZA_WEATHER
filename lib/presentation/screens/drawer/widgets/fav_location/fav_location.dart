@@ -1,8 +1,8 @@
 import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/cubit/app_states.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
-import 'package:algoriza_weather/presentation/screens/drawer/fav_location/dorp_down_form_field.dart';
-import 'package:algoriza_weather/presentation/screens/drawer/fav_location/fav_location_title.dart';
+import 'package:algoriza_weather/presentation/screens/drawer/widgets/fav_location/dorp_down_form_field.dart';
+import 'package:algoriza_weather/presentation/screens/drawer/widgets/fav_location/fav_location_title.dart';
 import 'package:flutter/material.dart';
 
 class FavLocation extends StatelessWidget {

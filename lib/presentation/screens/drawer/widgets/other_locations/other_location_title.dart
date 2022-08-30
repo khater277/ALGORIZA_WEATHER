@@ -1,6 +1,6 @@
 import 'package:algoriza_weather/presentation/resources/strings_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
-import 'package:algoriza_weather/presentation/screens/drawer/title_text.dart';
+import 'package:algoriza_weather/presentation/screens/drawer/widgets/title_text.dart';
 import 'package:flutter/material.dart';
 
 class OtherLocationTitle extends StatelessWidget {
