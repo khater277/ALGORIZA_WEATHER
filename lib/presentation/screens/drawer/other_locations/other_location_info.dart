@@ -1,3 +1,4 @@
+import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/resources/assets_manager.dart';
 import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
 import 'package:algoriza_weather/presentation/resources/fonts_manager.dart';
@@ -6,14 +7,17 @@ import 'package:algoriza_weather/presentation/screens/drawer/body_text.dart';
 import 'package:flutter/material.dart';
 
 class OtherLocationInfo extends StatelessWidget {
-  const OtherLocationInfo({Key? key}) : super(key: key);
+  final String name;
+  final int temp;
+  const OtherLocationInfo({Key? key, required this.name, required this.temp})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         SizedBox(width: AppWidth.w40),
-        const Expanded(child: BodyText(text: "Saint Cathrine")),
+        Expanded(child: BodyText(text: name)),
         Image.asset(
           ImagesManager.sun,
           width: AppSize.s20,
@@ -23,7 +27,7 @@ class OtherLocationInfo extends StatelessWidget {
           width: AppWidth.w5,
         ),
         Text(
-          "32°",
+          "$temp°",
           style: Theme.of(context).textTheme.titleSmall!.copyWith(
                 fontWeight: FontWeightManager.medium,
                 fontSize: FontSize.s12,

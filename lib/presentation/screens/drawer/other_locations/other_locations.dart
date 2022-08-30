@@ -20,7 +20,10 @@ class OtherLocations extends StatelessWidget {
           child: ListView.separated(
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) => const OtherLocationInfo(),
+            itemBuilder: (context, index) => OtherLocationInfo(
+              name: cubit.otherLocations[index].name!,
+              temp: cubit.otherLocations[index].temp!,
+            ),
             separatorBuilder: (context, index) =>
                 SizedBox(height: AppHeight.h20),
             itemCount: cubit.otherLocations.length,

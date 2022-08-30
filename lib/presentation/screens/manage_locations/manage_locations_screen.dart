@@ -61,6 +61,7 @@ class _ManageLocationsScreenState extends State<ManageLocationsScreen> {
                             cubit: cubit,
                             cityHive: cityHive,
                             index: index,
+                            state: state,
                           );
                         },
                         separatorBuilder: (context, index) =>

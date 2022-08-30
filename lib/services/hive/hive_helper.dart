@@ -14,34 +14,19 @@ class HiveHelper {
     if (!condition) _setDefaultLoaction();
   }
 
-  static Future<void> putCity({
-    required Box box,
-    required String key,
-    required City city,
-  }) {
-    return box.put(
-        key,
-        CityHive(
-          latitude: city.latitude,
-          longitude: city.longitude,
-          cityId: city.cityId,
-          name: city.name,
-        ));
-  }
-
   static Future<void> addCity({
     required Box box,
-    required CityHive city,
-    required int index,
+    required String key,
+    required CityHive cityHive,
   }) {
-    return box.put(index, city);
+    return box.put(key, cityHive);
   }
 
   static Future<void> removeCity({
     required Box box,
-    required int index,
+    required String key,
   }) {
-    return box.delete(index);
+    return box.delete(key);
   }
 
   static List<CityHive> getBoxCities({required Box box}) {
@@ -62,7 +47,14 @@ class HiveHelper {
   static void _setDefaultLoaction() {
     City city = City.fromJson(
         cities.firstWhere((element) => element['cityId'] == 360630));
-    putCity(box: favLocationBox!, key: HiveKeys.favLocation, city: city);
+    CityHive cityHive = CityHive(
+      latitude: city.latitude,
+      longitude: city.longitude,
+      cityId: city.cityId,
+      name: city.name,
+    );
+    addCity(
+        box: favLocationBox!, key: HiveKeys.favLocation, cityHive: cityHive);
     GetStorage().write('favLocation', true);
     print("_setDefaultLoaction");
   }

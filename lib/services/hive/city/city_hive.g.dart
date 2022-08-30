@@ -21,13 +21,14 @@ class CityHiveAdapter extends TypeAdapter<CityHive> {
       longitude: fields[1] as double?,
       cityId: fields[2] as int?,
       name: fields[3] as String?,
+      temp: fields[4] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, CityHive obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.latitude)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class CityHiveAdapter extends TypeAdapter<CityHive> {
       ..writeByte(2)
       ..write(obj.cityId)
       ..writeByte(3)
-      ..write(obj.name);
+      ..write(obj.name)
+      ..writeByte(4)
+      ..write(obj.temp);
   }
 
   @override

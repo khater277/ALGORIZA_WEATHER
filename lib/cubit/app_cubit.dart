@@ -8,6 +8,7 @@ import 'package:algoriza_weather/domain/models/complete_weather/complete_weather
 import 'package:algoriza_weather/domain/models/daily_weather/daily_weather.dart';
 import 'package:algoriza_weather/domain/models/hourly_weather/hourly_weather.dart';
 import 'package:algoriza_weather/services/api/dio_helper.dart';
+import 'package:algoriza_weather/services/hive/city/city_to_cityHive.dart';
 import 'package:algoriza_weather/services/hive/keys.dart';
 import 'package:algoriza_weather/services/hive/city/city_hive.dart';
 import 'package:algoriza_weather/services/hive/hive_helper.dart';
@@ -27,11 +28,16 @@ class AppCubit extends Cubit<AppStates> {
     emit(ChangeThemeState());
   }
 
-  List<City> allCities = [];
-  List<City> searchCities = [];
-  List<String> allCitiesNames = [];
+  List<City> allCities = []; // all egypt cities info
+  List<City> searchCities = []; // cities which appear in search screen
+  List<String> allCitiesNames =
+      []; // cities names to show in drop down form field
+
+  // favourite or current location information
   CityHive favLocation = HiveHelper.getCity(
       box: HiveHelper.favLocationBox!, key: HiveKeys.favLocation);
+
+  // fill both allCities and allCitiesNames lists by their data
   void handelAllCities() {
     allCities = [];
     allCitiesNames = [];
@@ -44,29 +50,30 @@ class AppCubit extends Cubit<AppStates> {
     emit(HandelAllCitiesState());
   }
 
+  // change favourite location from drop down form field
   void changeFavLocation({required City city}) {
-    CityHive cityHive = CityHive(
-      latitude: city.latitude,
-      longitude: city.longitude,
-      cityId: city.cityId,
-      name: city.name,
-    );
+    CityHive cityHive = cityToCityHive(city: city);
     favLocation = cityHive;
-    HiveHelper.putCity(
-        box: HiveHelper.favLocationBox!, key: HiveKeys.favLocation, city: city);
+    HiveHelper.addCity(
+        box: HiveHelper.favLocationBox!,
+        key: HiveKeys.favLocation,
+        cityHive: cityHive);
     getWeather(cityHive: cityHive);
-    // emit(ChangeFavLocationState());
   }
 
-  CompleteWeather? completeWeather;
-  List<ChartData> chartData = [];
-  double minY = 0;
-  double maxY = 0;
+  CompleteWeather?
+      completeWeather; // all weather details [currennt,hourly,daily]
+  List<ChartData> chartData =
+      []; // coordinates (x,y) for each tempreutre and its time ,hourly
+  double minY = 0; // min value in y axis
+  double maxY = 0; // max value in y axis
 
   void getWeather({@required CityHive? cityHive}) {
     if (cityHive == null) {
+      // loading in app opening
       emit(AppLoadingState());
     } else {
+      // loading when change favourite location
       emit(GetFavLocationWeatherLoadingState());
     }
     DioHelper.getWeather(
@@ -87,6 +94,7 @@ class AppCubit extends Cubit<AppStates> {
       List<HourlyWeather> hourlyWeather = [];
       handelHourlyWeather(weather: weather, hourlyWeather: hourlyWeather);
 
+      // determine both minY , maxY values
       minY = chartData.first.y;
       maxY = chartData.first.y;
       for (var element in chartData) {
@@ -99,6 +107,7 @@ class AppCubit extends Cubit<AppStates> {
         daily: dailyWeather,
         hourly: hourlyWeather,
       );
+      getOtherLocationsTemps();
       emit(GetWeatherState());
     }).catchError((error) {
       debugPrint("ERROR===>$error");
@@ -106,6 +115,7 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
+  // get temps for rest hours of the day
   void handelHourlyWeather({
     required CompleteWeather weather,
     required List<HourlyWeather> hourlyWeather,
@@ -113,7 +123,8 @@ class AppCubit extends Cubit<AppStates> {
     TimeOfDay currentTime = TimeOfDay.now();
     for (int i = 0; i < 24; i++) {
       TimeOfDay time = getTime(uinxTime: weather.hourly![i].dt!);
-      bool condition = currentTime.hour <= time.hour;
+      bool condition = currentTime.hour <=
+          time.hour; // check if the time is after now or not
       if (condition) {
         chartData.add(ChartData(
           double.parse(time.hour.toString()),
@@ -124,30 +135,67 @@ class AppCubit extends Cubit<AppStates> {
     }
   }
 
+  // other locations data which shown in drawer
   List<CityHive> otherLocations =
       HiveHelper.getBoxCities(box: HiveHelper.otherLocationsBox!);
-  void addNewLocation({
-    required CityHive cityHive,
-    required int index,
-  }) {
-    emit(AddNewLocationLoadingState());
-    HiveHelper.addCity(
-      box: HiveHelper.otherLocationsBox!,
-      city: cityHive,
-      index: index,
-    );
-    otherLocations =
-        HiveHelper.getBoxCities(box: HiveHelper.otherLocationsBox!);
-    print(otherLocations);
-    emit(AddNewLocationState());
+
+  // get all other locations temps in app opening
+  void getOtherLocationsTemps() {
+    if (otherLocations.isNotEmpty) {
+      for (var element in otherLocations) {
+        // element
+        addOtherLocation(
+          cityHive: element,
+          getAll: true,
+        );
+      }
+      // emit(GetOtherLocationsTempsState());
+    }
   }
 
-  void removeLocation({required int index}) {
-    emit(AddNewLocationLoadingState());
-    HiveHelper.removeCity(box: HiveHelper.otherLocationsBox!, index: index);
+  // remove city from other locations record
+  void removeOtherLocation({required CityHive cityHive}) {
+    HiveHelper.removeCity(
+        box: HiveHelper.otherLocationsBox!, key: cityHive.cityId!.toString());
     otherLocations =
         HiveHelper.getBoxCities(box: HiveHelper.otherLocationsBox!);
     emit(RemoveLocationState());
+  }
+
+  List<int> loadingCitiesIDs =
+      []; // list of ids of cities which its data loading
+  void addOtherLocation({required CityHive cityHive, bool? getAll}) {
+    // not loading in app opening
+    if (getAll != true) emit(GetCurrentWeatherLoadingState());
+    loadingCitiesIDs.add(cityHive.cityId!);
+    DioHelper.getCurrentWeather(
+      lat: cityHive.latitude!.toString(),
+      lon: cityHive.longitude!.toString(),
+    ).then((value) {
+      double temp = value.data['main']['temp']; // city current temp
+
+      // add temp to city to update it in other locations record
+      CityHive updateCity = CityHive(
+        latitude: cityHive.latitude,
+        longitude: cityHive.longitude,
+        cityId: cityHive.cityId,
+        name: cityHive.name,
+        temp: temp.round(),
+      );
+
+      HiveHelper.addCity(
+        box: HiveHelper.otherLocationsBox!,
+        key: cityHive.cityId!.toString(),
+        cityHive: updateCity,
+      );
+      otherLocations =
+          HiveHelper.getBoxCities(box: HiveHelper.otherLocationsBox!);
+      loadingCitiesIDs.remove(cityHive.cityId!);
+      if (getAll != true) emit(GetCurrentWeatherState());
+    }).catchError((error) {
+      debugPrint("ERROR===>$error");
+      emit(AppErrorState());
+    });
   }
 
   void citySearch({required String name}) {

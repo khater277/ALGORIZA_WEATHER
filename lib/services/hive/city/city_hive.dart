@@ -21,10 +21,15 @@ class CityHive {
   @required
   String? name;
 
+  @HiveField(4)
+  @required
+  int? temp;
+
   CityHive({
     required this.latitude,
     required this.longitude,
     required this.cityId,
     required this.name,
+    this.temp,
   });
 }

@@ -18,6 +18,12 @@ class ChangeFavLocationState extends AppStates {}
 
 class GetWeatherState extends AppStates {}
 
+class GetCurrentWeatherState extends AppStates {}
+
+class GetOtherLocationsTempsState extends AppStates {}
+
+class GetCurrentWeatherLoadingState extends AppStates {}
+
 class GetOtherLocationsWeatherState extends AppStates {}
 
 class CitySearchState extends AppStates {}
