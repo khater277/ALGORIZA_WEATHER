@@ -2,7 +2,7 @@ import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/resources/assets_manager.dart';
 import 'package:algoriza_weather/presentation/resources/strings_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
-import 'package:algoriza_weather/presentation/screens/home/home_widgets/additional_info/additional_type.dart';
+import 'package:algoriza_weather/presentation/screens/home/widgets/additional_info/additional_type.dart';
 import 'package:flutter/material.dart';
 
 class AdditionalInfoCard extends StatelessWidget {

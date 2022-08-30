@@ -2,6 +2,7 @@ import 'package:algoriza_weather/domain/cities/cities.dart';
 import 'package:algoriza_weather/domain/models/city/city.dart';
 import 'package:algoriza_weather/services/hive/keys.dart';
 import 'package:algoriza_weather/services/hive/city/city_hive.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -56,6 +57,6 @@ class HiveHelper {
     addCity(
         box: favLocationBox!, key: HiveKeys.favLocation, cityHive: cityHive);
     GetStorage().write('favLocation', true);
-    print("_setDefaultLoaction");
+    debugPrint("_setDefaultLoaction");
   }
 }

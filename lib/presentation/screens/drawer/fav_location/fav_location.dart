@@ -1,9 +1,5 @@
 import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/cubit/app_states.dart';
-import 'package:algoriza_weather/domain/models/city/city.dart';
-import 'package:algoriza_weather/presentation/resources/assets_manager.dart';
-import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
-import 'package:algoriza_weather/presentation/resources/fonts_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:algoriza_weather/presentation/screens/drawer/fav_location/dorp_down_form_field.dart';
 import 'package:algoriza_weather/presentation/screens/drawer/fav_location/fav_location_title.dart';

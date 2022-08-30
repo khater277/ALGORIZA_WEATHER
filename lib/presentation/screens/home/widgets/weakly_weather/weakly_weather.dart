@@ -2,9 +2,9 @@ import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/domain/models/daily_weather/daily_weather.dart';
 import 'package:algoriza_weather/presentation/resources/assets_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
-import 'package:algoriza_weather/presentation/screens/home/home_widgets/weakly_weather/day_name.dart';
-import 'package:algoriza_weather/presentation/screens/home/home_widgets/weakly_weather/rain_possibility.dart';
-import 'package:algoriza_weather/presentation/screens/home/home_widgets/weakly_weather/temp_degree.dart';
+import 'package:algoriza_weather/presentation/screens/home/widgets/weakly_weather/day_name.dart';
+import 'package:algoriza_weather/presentation/screens/home/widgets/weakly_weather/rain_possibility.dart';
+import 'package:algoriza_weather/presentation/screens/home/widgets/weakly_weather/temp_degree.dart';
 import 'package:algoriza_weather/shared/functions.dart';
 import 'package:flutter/material.dart';
 

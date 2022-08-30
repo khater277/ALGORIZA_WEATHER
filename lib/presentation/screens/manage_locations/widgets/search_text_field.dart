@@ -4,7 +4,6 @@ import 'package:algoriza_weather/presentation/resources/icons_broken.dart';
 import 'package:algoriza_weather/presentation/resources/navigation_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:algoriza_weather/presentation/screens/manage_locations/widgets/clear_search.dart';
-import 'package:algoriza_weather/services/hive/hive_helper.dart';
 import 'package:algoriza_weather/shared/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

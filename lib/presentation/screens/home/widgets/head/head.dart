@@ -1,7 +1,7 @@
 import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
-import 'package:algoriza_weather/presentation/screens/home/home_widgets/head/city_temp_and_name.dart';
-import 'package:algoriza_weather/presentation/screens/home/home_widgets/head/temp_deatils.dart';
+import 'package:algoriza_weather/presentation/screens/home/widgets/head/city_temp_and_name.dart';
+import 'package:algoriza_weather/presentation/screens/home/widgets/head/temp_deatils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

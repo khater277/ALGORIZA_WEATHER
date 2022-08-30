@@ -68,7 +68,7 @@ class AppCubit extends Cubit<AppStates> {
   double minY = 0; // min value in y axis
   double maxY = 0; // max value in y axis
 
-  void getWeather({@required CityHive? cityHive}) {
+  void getWeather({CityHive? cityHive}) {
     if (cityHive == null) {
       // loading in app opening
       emit(AppLoadingState());
@@ -202,7 +202,7 @@ class AppCubit extends Cubit<AppStates> {
     searchCities = allCities.where((element) {
       return element.name!.toLowerCase().contains(name.toLowerCase());
     }).toList();
-    print(searchCities.length);
+    debugPrint(searchCities.length.toString());
     emit(CitySearchState());
   }
 

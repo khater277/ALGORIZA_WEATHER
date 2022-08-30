@@ -4,12 +4,11 @@ import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
 import 'package:algoriza_weather/presentation/resources/fonts_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:algoriza_weather/presentation/screens/drawer/drawer_view.dart';
-import 'package:algoriza_weather/presentation/screens/home/home_widgets/additional_info/additional_info_card.dart';
-import 'package:algoriza_weather/presentation/screens/home/home_widgets/head/head.dart';
-import 'package:algoriza_weather/presentation/screens/home/home_widgets/hourly_temp_chart/hourly_temps.dart';
-import 'package:algoriza_weather/presentation/screens/home/home_widgets/surise_sunset/sunrise_sunset_card.dart';
-import 'package:algoriza_weather/presentation/screens/home/home_widgets/weakly_weather/weakly_weather.dart';
-import 'package:algoriza_weather/services/hive/hive_helper.dart';
+import 'package:algoriza_weather/presentation/screens/home/widgets/additional_info/additional_info_card.dart';
+import 'package:algoriza_weather/presentation/screens/home/widgets/head/head.dart';
+import 'package:algoriza_weather/presentation/screens/home/widgets/hourly_temp_chart/hourly_temps.dart';
+import 'package:algoriza_weather/presentation/screens/home/widgets/surise_sunset/sunrise_sunset_card.dart';
+import 'package:algoriza_weather/presentation/screens/home/widgets/weakly_weather/weakly_weather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

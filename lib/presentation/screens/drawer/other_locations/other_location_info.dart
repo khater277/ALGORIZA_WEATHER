@@ -1,4 +1,3 @@
-import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/resources/assets_manager.dart';
 import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
 import 'package:algoriza_weather/presentation/resources/fonts_manager.dart';
