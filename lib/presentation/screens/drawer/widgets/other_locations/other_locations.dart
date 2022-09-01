@@ -22,7 +22,7 @@ class OtherLocations extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) => OtherLocationInfo(
               name: cubit.otherLocations[index].name!,
-              temp: cubit.otherLocations[index].temp!,
+              temp: cubit.otherLocations[index].temp,
             ),
             separatorBuilder: (context, index) =>
                 SizedBox(height: AppHeight.h20),

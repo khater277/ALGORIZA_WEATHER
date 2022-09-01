@@ -1,10 +1,12 @@
 import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/cubit/app_states.dart';
 import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
+import 'package:algoriza_weather/presentation/resources/strings_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:algoriza_weather/presentation/screens/manage_locations/widgets/city_info.dart';
 import 'package:algoriza_weather/presentation/screens/manage_locations/widgets/search_text_field.dart';
 import 'package:algoriza_weather/services/hive/city/city_hive.dart';
+import 'package:algoriza_weather/shared/widgets/flush_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,7 +29,15 @@ class _ManageLocationsScreenState extends State<ManageLocationsScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is GetCurrentWeatherErrorState) {
+          showFlushBar(
+            title: StringsManager.connectionError,
+            message: StringsManager.connectionErrorMessage,
+            context: context,
+          );
+        }
+      },
       builder: (context, state) {
         AppCubit cubit = AppCubit.get(context);
         return SafeArea(

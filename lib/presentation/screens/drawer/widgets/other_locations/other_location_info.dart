@@ -3,11 +3,12 @@ import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
 import 'package:algoriza_weather/presentation/resources/fonts_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:algoriza_weather/presentation/screens/drawer/widgets/body_text.dart';
+import 'package:algoriza_weather/presentation/screens/drawer/widgets/drawer_temp.dart';
 import 'package:flutter/material.dart';
 
 class OtherLocationInfo extends StatelessWidget {
   final String name;
-  final int temp;
+  final int? temp;
   const OtherLocationInfo({Key? key, required this.name, required this.temp})
       : super(key: key);
 
@@ -25,14 +26,7 @@ class OtherLocationInfo extends StatelessWidget {
         SizedBox(
           width: AppWidth.w5,
         ),
-        Text(
-          "$temp°",
-          style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                fontWeight: FontWeightManager.medium,
-                fontSize: FontSize.s12,
-                color: ColorManager.lightGrey,
-              ),
-        )
+        DrawerTemp(temp: temp)
       ],
     );
   }

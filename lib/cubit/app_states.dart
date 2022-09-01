@@ -8,7 +8,9 @@ class GetFavLocationWeatherLoadingState extends AppStates {}
 
 class AddNewLocationLoadingState extends AppStates {}
 
-class AppErrorState extends AppStates {}
+class GetCompleteWeatherErrorState extends AppStates {}
+
+class GetCurrentWeatherErrorState extends AppStates {}
 
 class ChangeThemeState extends AppStates {}
 

@@ -29,7 +29,7 @@ class _ThemeSwitcherState extends State<ThemeSwitcher> {
             value: dark,
             activeTrackColor: ColorManager.grey,
             inactiveTrackColor: Colors.grey.withOpacity(0.5),
-            activeColor: Colors.yellow,
+            activeColor: ColorManager.yellow,
             inactiveThumbColor: Colors.grey,
             onChanged: (value) {
               setState(() {

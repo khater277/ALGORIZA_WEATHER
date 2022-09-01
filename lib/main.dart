@@ -8,6 +8,7 @@ import 'package:algoriza_weather/services/hive/city/city_hive.dart';
 import 'package:algoriza_weather/services/hive/hive_helper.dart';
 import 'package:algoriza_weather/services/hive/keys.dart';
 import 'package:algoriza_weather/shared/saved_data.dart';
+import 'package:algoriza_weather/shared/widgets/offline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
                 theme: isDark
                     ? ThemeManager.darkTheme()
                     : ThemeManager.lightTheme(),
-                home: const HomeScreen(),
+                home: const OfflineWidget(onlineWidget: HomeScreen()),
               );
             },
           ),

@@ -15,7 +15,7 @@ class HiveHelper {
     if (!condition) _setDefaultLoaction();
   }
 
-  static Future<void> addCity({
+  static Future<void> putCity({
     required Box box,
     required String key,
     required CityHive cityHive,
@@ -54,7 +54,7 @@ class HiveHelper {
       cityId: city.cityId,
       name: city.name,
     );
-    addCity(
+    putCity(
         box: favLocationBox!, key: HiveKeys.favLocation, cityHive: cityHive);
     GetStorage().write('favLocation', true);
     debugPrint("_setDefaultLoaction");

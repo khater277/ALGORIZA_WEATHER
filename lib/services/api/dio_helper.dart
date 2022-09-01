@@ -9,8 +9,8 @@ class DioHelper {
       BaseOptions(
           baseUrl: 'https://api.openweathermap.org/data/2.5/',
           receiveDataWhenStatusError: true,
-          //connectTimeout: 20 * 1000,
-          //receiveTimeout: 20 * 1000,
+          connectTimeout: 20 * 1000,
+          receiveTimeout: 20 * 1000,
           headers: {'Content-Type': 'application/json'}),
     );
   }

@@ -20,6 +20,9 @@ class FavLocationDropDown extends StatelessWidget {
       decoration: InputDecoration(
         suffixIcon: TempretureDegree(
           state: state,
+          temp: cubit.completeWeather == null
+              ? null
+              : cubit.completeWeather!.current!.temp!.round(),
         ),
       ),
       dropdownColor: ColorManager.button,

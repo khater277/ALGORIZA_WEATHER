@@ -14,6 +14,7 @@ import 'package:algoriza_weather/services/hive/city/city_hive.dart';
 import 'package:algoriza_weather/services/hive/hive_helper.dart';
 import 'package:algoriza_weather/shared/functions.dart';
 import 'package:algoriza_weather/shared/saved_data.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';
@@ -54,7 +55,7 @@ class AppCubit extends Cubit<AppStates> {
   void changeFavLocation({required City city}) {
     CityHive cityHive = cityToCityHive(city: city);
     favLocation = cityHive;
-    HiveHelper.addCity(
+    HiveHelper.putCity(
         box: HiveHelper.favLocationBox!,
         key: HiveKeys.favLocation,
         cityHive: cityHive);
@@ -108,11 +109,39 @@ class AppCubit extends Cubit<AppStates> {
         hourly: hourlyWeather,
       );
       getOtherLocationsTemps();
+      print(value.statusCode!);
       emit(GetWeatherState());
     }).catchError((error) {
+      DioError dioError = error;
+      debugPrint("ERROR===>${dioError.type.index}");
+      debugPrint("ERROR===>${dioError.type.name}");
+      debugPrint("ERROR===>${dioError.error}");
+      debugPrint("ERROR===>${dioError.response}");
       debugPrint("ERROR===>$error");
-      emit(AppErrorState());
+      otherLocationsNullTemps();
+      emit(GetCompleteWeatherErrorState());
     });
+  }
+
+  // set all temps in other locations equal null
+  void otherLocationsNullTemps() {
+    for (var element in otherLocations) {
+      CityHive updateCity = CityHive(
+        latitude: element.latitude,
+        longitude: element.longitude,
+        cityId: element.cityId,
+        name: element.name,
+        temp: null,
+      );
+
+      HiveHelper.putCity(
+        box: HiveHelper.otherLocationsBox!,
+        key: element.cityId!.toString(),
+        cityHive: updateCity,
+      );
+      otherLocations =
+          HiveHelper.getBoxCities(box: HiveHelper.otherLocationsBox!);
+    }
   }
 
   // get temps for rest hours of the day
@@ -164,6 +193,7 @@ class AppCubit extends Cubit<AppStates> {
 
   List<int> loadingCitiesIDs =
       []; // list of ids of cities which its data loading
+
   void addOtherLocation({required CityHive cityHive, bool? getAll}) {
     // not loading in app opening
     if (getAll != true) emit(GetCurrentWeatherLoadingState());
@@ -183,7 +213,7 @@ class AppCubit extends Cubit<AppStates> {
         temp: temp.round(),
       );
 
-      HiveHelper.addCity(
+      HiveHelper.putCity(
         box: HiveHelper.otherLocationsBox!,
         key: cityHive.cityId!.toString(),
         cityHive: updateCity,
@@ -194,7 +224,7 @@ class AppCubit extends Cubit<AppStates> {
       if (getAll != true) emit(GetCurrentWeatherState());
     }).catchError((error) {
       debugPrint("ERROR===>$error");
-      emit(AppErrorState());
+      emit(GetCurrentWeatherErrorState());
     });
   }
 

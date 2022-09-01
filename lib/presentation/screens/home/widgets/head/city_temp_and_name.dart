@@ -4,9 +4,45 @@ import 'package:algoriza_weather/presentation/resources/fonts_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
-class CityTempAndName extends StatelessWidget {
+class CityTempAndName extends StatefulWidget {
   final AppCubit cubit;
   const CityTempAndName({Key? key, required this.cubit}) : super(key: key);
+
+  @override
+  State<CityTempAndName> createState() => _CityTempAndNameState();
+}
+
+class _CityTempAndNameState extends State<CityTempAndName> {
+  late bool beforeSunset;
+  late bool afterSunrise;
+  late bool isDay;
+  late bool isRain;
+  late bool isClouds;
+  late String dayImage;
+  late String nightImage;
+  @override
+  void initState() {
+    beforeSunset = DateTime.now().isBefore(DateTime.fromMillisecondsSinceEpoch(
+        widget.cubit.completeWeather!.current!.sunset! * 1000));
+    afterSunrise = DateTime.now().isAfter(DateTime.fromMillisecondsSinceEpoch(
+        widget.cubit.completeWeather!.current!.sunrise! * 1000));
+    isDay = beforeSunset && afterSunrise;
+    isRain = widget.cubit.completeWeather!.current!.weather![0].main == "Rain";
+    isClouds =
+        widget.cubit.completeWeather!.current!.weather![0].main == "Clouds";
+    dayImage = isRain
+        ? ImagesManager.rainyDay
+        : isClouds
+            ? ImagesManager.cloudyDay
+            : ImagesManager.sun;
+
+    nightImage = isRain
+        ? ImagesManager.rainyNight
+        : isClouds
+            ? ImagesManager.cloudyNight
+            : ImagesManager.night;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +56,7 @@ class CityTempAndName extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${cubit.completeWeather!.current!.temp!.round()}",
+                    "${widget.cubit.completeWeather!.current!.temp!.round()}",
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(
@@ -35,7 +71,7 @@ class CityTempAndName extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "${cubit.favLocation.name}",
+                    "${widget.cubit.favLocation.name}",
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   SizedBox(width: AppWidth.w2),
@@ -49,7 +85,7 @@ class CityTempAndName extends StatelessWidget {
           ),
         ),
         Image.asset(
-          ImagesManager.sun,
+          isDay ? dayImage : nightImage,
           width: AppSize.s60,
           height: AppSize.s60,
         ),

@@ -17,6 +17,8 @@ class _TempDetailsState extends State<TempDetails> {
   late int feelsLike;
   late DateTime date;
   late String dayName;
+  late String hour;
+  late String minutes;
   late TimeOfDay timeOfDay;
   @override
   void initState() {
@@ -26,6 +28,11 @@ class _TempDetailsState extends State<TempDetails> {
     date = DateTime.fromMillisecondsSinceEpoch(
         widget.cubit.completeWeather!.current!.dt! * 1000);
     timeOfDay = TimeOfDay.fromDateTime(date);
+    dayName = getDayFromDate(dt: widget.cubit.completeWeather!.current!.dt!);
+    hour = timeOfDay.hour == 0 ? "12" : timeOfDay.hourOfPeriod.toString();
+    minutes = timeOfDay.minute > 9
+        ? timeOfDay.minute.toString()
+        : "0${timeOfDay.minute}";
     super.initState();
   }
 
@@ -39,7 +46,7 @@ class _TempDetailsState extends State<TempDetails> {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         Text(
-          "${getDayFromDate(dt: widget.cubit.completeWeather!.current!.dt!)} ${timeOfDay.hour == 0 ? "12" : timeOfDay.hour.toString()}:${timeOfDay.minute} ${timeOfDay.period.name}",
+          "$dayName $hour : $minutes ${timeOfDay.period.name}",
           style: Theme.of(context).textTheme.bodyMedium,
         ),
       ],

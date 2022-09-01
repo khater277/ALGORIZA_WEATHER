@@ -20,7 +20,7 @@ class RainPossibility extends StatelessWidget {
           width: AppWidth.w1,
         ),
         Text(
-          "$rain%",
+          "${rain.round()}%",
           style: Theme.of(context).textTheme.bodySmall!.copyWith(
                 color: ColorManager.lightGrey,
                 fontWeight: FontWeightManager.semiBold,

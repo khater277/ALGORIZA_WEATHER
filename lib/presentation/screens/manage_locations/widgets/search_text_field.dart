@@ -2,6 +2,7 @@ import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
 import 'package:algoriza_weather/presentation/resources/icons_broken.dart';
 import 'package:algoriza_weather/presentation/resources/navigation_manager.dart';
+import 'package:algoriza_weather/presentation/resources/strings_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:algoriza_weather/presentation/screens/manage_locations/widgets/clear_search.dart';
 import 'package:algoriza_weather/shared/widgets/text_field.dart';
@@ -39,7 +40,7 @@ class SearchTextField extends StatelessWidget {
           child: DefaultTextFiled(
             controller: controller,
             fontSize: 12.sp,
-            hint: "search...",
+            hint: StringsManager.search,
             hintSize: 12.sp,
             height: 5.h,
             prefix: Icon(

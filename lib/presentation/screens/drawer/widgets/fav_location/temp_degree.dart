@@ -4,11 +4,14 @@ import 'package:algoriza_weather/presentation/resources/assets_manager.dart';
 import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
 import 'package:algoriza_weather/presentation/resources/fonts_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
+import 'package:algoriza_weather/presentation/screens/drawer/widgets/drawer_temp.dart';
 import 'package:flutter/material.dart';
 
 class TempretureDegree extends StatelessWidget {
   final AppStates state;
-  const TempretureDegree({Key? key, required this.state}) : super(key: key);
+  final int? temp;
+  const TempretureDegree({Key? key, required this.state, this.temp})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,22 +28,15 @@ class TempretureDegree extends StatelessWidget {
         ),
         if (state is GetFavLocationWeatherLoadingState)
           SizedBox(
-            width: AppWidth.w18,
-            height: AppHeight.h18,
+            width: AppWidth.w16,
+            height: AppHeight.h16,
             child: const CircularProgressIndicator(
               strokeWidth: 2,
               color: ColorManager.lightGrey,
             ),
           )
         else
-          Text(
-            "${AppCubit.get(context).completeWeather!.current!.temp!.round()}°",
-            style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                  fontWeight: FontWeightManager.medium,
-                  fontSize: FontSize.s12,
-                  color: ColorManager.lightGrey,
-                ),
-          ),
+          DrawerTemp(temp: temp),
       ],
     );
   }

@@ -4,6 +4,7 @@ import 'package:algoriza_weather/presentation/resources/colors_manager.dart';
 import 'package:algoriza_weather/presentation/resources/fonts_manager.dart';
 import 'package:algoriza_weather/presentation/resources/values_manager.dart';
 import 'package:algoriza_weather/presentation/screens/drawer/drawer_view.dart';
+import 'package:algoriza_weather/presentation/screens/home/connection_failed.dart';
 import 'package:algoriza_weather/presentation/screens/home/widgets/additional_info/additional_info_card.dart';
 import 'package:algoriza_weather/presentation/screens/home/widgets/head/head.dart';
 import 'package:algoriza_weather/presentation/screens/home/widgets/hourly_temp_chart/hourly_temps.dart';
@@ -52,34 +53,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                body: CustomScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  slivers: [
-                    Head(cubit: cubit),
-                    // HomeAppBar(),
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: AppWidth.w14,
-                          vertical: AppHeight.h10,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: AppHeight.h30),
-                            HourlyTemps(cubit: cubit),
-                            SizedBox(height: AppHeight.h10),
-                            WeaklyWeather(cubit: cubit),
-                            SizedBox(height: AppHeight.h10),
-                            SunriseSunsetCard(cubit: cubit),
-                            SizedBox(height: AppHeight.h10),
-                            AdditionalInfoCard(cubit: cubit)
-                          ],
-                        ),
+                body: cubit.completeWeather == null
+                    ? const ConnectionFailed()
+                    : CustomScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        slivers: [
+                          Head(cubit: cubit),
+                          // HomeAppBar(),
+                          SliverToBoxAdapter(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: AppWidth.w14,
+                                vertical: AppHeight.h10,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(height: AppHeight.h30),
+                                  HourlyTemps(cubit: cubit),
+                                  SizedBox(height: AppHeight.h10),
+                                  WeaklyWeather(cubit: cubit),
+                                  SizedBox(height: AppHeight.h10),
+                                  SunriseSunsetCard(cubit: cubit),
+                                  SizedBox(height: AppHeight.h10),
+                                  AdditionalInfoCard(cubit: cubit)
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
                 drawer: DrawerView(cubit: cubit, state: state),
               )
             : const Scaffold(
