@@ -1,3 +1,5 @@
+import 'package:algoriza_weather/features/wheather/data/models/complete_weather/complete_weather.dart';
+
 abstract class AppStates {}
 
 class AppInitialState extends AppStates {}
@@ -33,3 +35,19 @@ class CitySearchState extends AppStates {}
 class AddNewLocationState extends AppStates {}
 
 class RemoveLocationState extends AppStates {}
+
+class GetCompleteWeatherLoadingState extends AppStates {}
+
+class GetCompleteWeatherErrorrState extends AppStates {
+  final String msg;
+
+  GetCompleteWeatherErrorrState({required this.msg});
+}
+
+class GetCompleteWeatherSuccessState extends AppStates {
+  final CompleteWeatherModel completeWeatherModel;
+
+  GetCompleteWeatherSuccessState({required this.completeWeatherModel});
+}
+
+// class GetOtherLocations
