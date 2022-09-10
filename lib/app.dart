@@ -1,5 +1,4 @@
 import 'package:algoriza_weather/config/themes/app_theme.dart';
-import 'package:algoriza_weather/core/widgets/offline.dart';
 import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/cubit/app_states.dart';
 import 'package:algoriza_weather/features/wheather/presentation/screens/home/home_screen.dart';
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return BlocProvider(
           create: (BuildContext context) => di.sl<AppCubit>()
-            ..handelAllCities()
+            // ..handelAllCities()
             // ..getWeather()
             ..getCompleteWeather(),
           child: BlocConsumer<AppCubit, AppStates>(
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 theme: isDark ? AppTheme.darkTheme() : AppTheme.lightTheme(),
-                home: HomeScreen(),
+                home: const HomeScreen(),
               );
             },
           ),

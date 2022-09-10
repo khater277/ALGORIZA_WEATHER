@@ -48,7 +48,7 @@ class AppCubit extends Cubit<AppStates> {
       box: HiveHelper.favLocationBox!, key: HiveKeys.favLocation);
 
   /// fill both allCities and allCitiesNames lists by their data
-  void handelAllCities() {
+  void _handelAllCities() {
     allCities = [];
     allCitiesNames = [];
     for (var city in cities) {
@@ -57,7 +57,7 @@ class AppCubit extends Cubit<AppStates> {
       allCities.add(cityModel);
     }
     searchCities = allCities;
-    emit(HandelAllCitiesState());
+    // emit(HandelAllCitiesState());
   }
 
   /// change favourite location from drop down form field
@@ -92,7 +92,7 @@ class AppCubit extends Cubit<AppStates> {
       /// loading when change favourite location
       emit(GetFavLocationWeatherLoadingState());
     }
-
+    _handelAllCities();
     Either<Failure, CompleteWeatherModel?> response =
         await getCompleteWeatherUseCase(CompleteWeatherParams(
       lat: favLocation!.latitude.toString(),
@@ -192,19 +192,19 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   // set all temps in other locations equal null
-  void _otherLocationsNullTemps() {
-    for (CityModel element in otherLocations!) {
-      CityModel updateCity = element.copyWith(temp: null);
+  // void _otherLocationsNullTemps() {
+  //   for (CityModel element in otherLocations!) {
+  //     CityModel updateCity = element.copyWith(temp: null);
 
-      HiveHelper.putCity(
-        box: HiveHelper.otherLocationsBox!,
-        key: element.cityId!.toString(),
-        city: updateCity,
-      );
-      otherLocations =
-          HiveHelper.getBoxCities(box: HiveHelper.otherLocationsBox!);
-    }
-  }
+  //     HiveHelper.putCity(
+  //       box: HiveHelper.otherLocationsBox!,
+  //       key: element.cityId!.toString(),
+  //       city: updateCity,
+  //     );
+  //     otherLocations =
+  //         HiveHelper.getBoxCities(box: HiveHelper.otherLocationsBox!);
+  //   }
+  // }
 
   // other locations data which shown in drawer
   List<CityModel>? otherLocations =
