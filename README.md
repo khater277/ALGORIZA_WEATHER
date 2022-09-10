@@ -4,4 +4,4 @@ A new Flutter project.
 
 Algoriza phase 2 task
 
-video link :- https://drive.google.com/file/d/1cxwOttIwOMKaa2lLwPU6GhazOWDzKqfd/view?usp=sharing
+video link :- https://youtu.be/v3tH5ZA0M8c
