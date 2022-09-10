@@ -3,14 +3,14 @@ import 'package:algoriza_weather/core/hive/hive_helper.dart';
 import 'package:algoriza_weather/features/wheather/data/models/complete_weather/complete_weather.dart';
 
 abstract class CompleteWheaterLocalDataSource {
-  CompleteWeatherModel getLastCompleteWeather();
+  CompleteWeatherModel? getLastCompleteWeather();
   Future<void> cacheCompleteWeather(CompleteWeatherModel completeWeatherModel);
 }
 
 class CompleteWheaterLocalDataSourceImpl
     implements CompleteWheaterLocalDataSource {
   @override
-  CompleteWeatherModel getLastCompleteWeather() {
+  CompleteWeatherModel? getLastCompleteWeather() {
     final completeWeather = HiveHelper.getCompleteWeather();
     if (completeWeather != null) {
       return completeWeather;

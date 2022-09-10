@@ -21,7 +21,7 @@ class OtherLocationWeatherRepositoryImpl
   });
 
   @override
-  Future<Either<Failure, CityModel>> getOtherLocationWeather(
+  Future<Either<Failure, CityModel?>> getOtherLocationWeather(
       CityModel city) async {
     if (await networkInfo.isConnected) {
       try {
@@ -37,9 +37,13 @@ class OtherLocationWeatherRepositoryImpl
       }
     } else {
       try {
-        CityModel response = otherLocationWeatherLocalDataSource
+        CityModel? response = otherLocationWeatherLocalDataSource
             .getOtherLocationWeather(city.cityId!.toString());
-        return Right(response);
+        if (response != null) {
+          return Right(response);
+        } else {
+          return Left(CacheFailure());
+        }
       } on CacheException {
         return Left(CacheFailure());
       }

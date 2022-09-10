@@ -4,11 +4,11 @@ import 'package:algoriza_weather/features/wheather/domain/repositories/other_loc
 import 'package:dartz/dartz.dart';
 import 'package:algoriza_weather/core/errors/failures.dart';
 
-class GetOtherLocationWeather implements BaseUseCase<CityModel, CityModel> {
+class GetOtherLocationWeather implements BaseUseCase<CityModel?, CityModel> {
   final OtherLocationWeatherRepository otherLocationWeatherRepository;
 
   GetOtherLocationWeather({required this.otherLocationWeatherRepository});
   @override
-  Future<Either<Failure, CityModel>> call(CityModel city) =>
+  Future<Either<Failure, CityModel?>> call(CityModel city) =>
       otherLocationWeatherRepository.getOtherLocationWeather(city);
 }

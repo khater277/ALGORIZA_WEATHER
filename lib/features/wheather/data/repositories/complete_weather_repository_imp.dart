@@ -33,11 +33,14 @@ class CompleteWeatherRepositoryImpl implements CompleteWeatherRepository {
       }
     } else {
       try {
-        final localCompleteWeather =
+        CompleteWeatherModel? localCompleteWeather =
             completeWheaterLocalDataSource.getLastCompleteWeather();
-        completeWheaterLocalDataSource
-            .cacheCompleteWeather(localCompleteWeather);
-        return Right(localCompleteWeather);
+        if (localCompleteWeather != null) {
+          return Right(localCompleteWeather);
+        } else {
+          return Left(CacheFailure());
+        }
+        // return Right(localCompleteWeather);
       } on CacheException {
         return Left(CacheFailure());
       }

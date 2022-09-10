@@ -6,12 +6,12 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 class GetCompleteWeather
-    implements BaseUseCase<CompleteWeatherModel, CompleteWeatherParams> {
+    implements BaseUseCase<CompleteWeatherModel?, CompleteWeatherParams> {
   final CompleteWeatherRepository completeWeatherRepository;
 
   GetCompleteWeather({required this.completeWeatherRepository});
   @override
-  Future<Either<Failure, CompleteWeatherModel>> call(
+  Future<Either<Failure, CompleteWeatherModel?>> call(
           CompleteWeatherParams params) =>
       completeWeatherRepository.getCompleteWeather(params);
 }

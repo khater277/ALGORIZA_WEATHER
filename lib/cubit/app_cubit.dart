@@ -93,7 +93,7 @@ class AppCubit extends Cubit<AppStates> {
       emit(GetFavLocationWeatherLoadingState());
     }
 
-    Either<Failure, CompleteWeatherModel> response =
+    Either<Failure, CompleteWeatherModel?> response =
         await getCompleteWeatherUseCase(CompleteWeatherParams(
       lat: favLocation!.latitude.toString(),
       lon: favLocation!.longitude.toString(),
@@ -106,7 +106,7 @@ class AppCubit extends Cubit<AppStates> {
       },
       (completeWeatherModel) async {
         _handelGetCompleteWeatherSuccess(
-            completeWeatherModel: completeWeatherModel);
+            completeWeatherModel: completeWeatherModel!);
       },
     );
   }
@@ -240,7 +240,7 @@ class AppCubit extends Cubit<AppStates> {
     if (getAll != true) emit(GetCurrentWeatherLoadingState());
     loadingCitiesIDs.add(city.cityId!);
 
-    Either<Failure, CityModel> response =
+    Either<Failure, CityModel?> response =
         await getOtherLocationsWeatherUseCase(city);
 
     response.fold(

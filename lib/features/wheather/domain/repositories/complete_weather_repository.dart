@@ -4,6 +4,6 @@ import 'package:algoriza_weather/features/wheather/domain/usecases/get_complete_
 import 'package:dartz/dartz.dart';
 
 abstract class CompleteWeatherRepository {
-  Future<Either<Failure, CompleteWeatherModel>> getCompleteWeather(
+  Future<Either<Failure, CompleteWeatherModel?>> getCompleteWeather(
       CompleteWeatherParams params);
 }

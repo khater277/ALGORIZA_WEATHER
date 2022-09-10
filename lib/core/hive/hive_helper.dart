@@ -60,11 +60,11 @@ class HiveHelper {
     required Box box,
     required String key,
   }) {
-    return box.get(key)!;
+    return box.get(key);
   }
 
   static CompleteWeatherModel? getCompleteWeather() {
-    return completeWeatherBox!.get(HiveKeys.completeWeather)!;
+    return completeWeatherBox!.get(HiveKeys.completeWeather);
   }
 
   static Future<void> putCompleteWeather({
