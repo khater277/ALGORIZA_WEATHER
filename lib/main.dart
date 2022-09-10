@@ -3,7 +3,7 @@ import 'package:algoriza_weather/core/api/dio_helper.dart';
 import 'package:algoriza_weather/core/hive/hive_helper.dart';
 import 'package:algoriza_weather/cubit/bloc_observer.dart';
 import 'package:algoriza_weather/injector_container.dart' as di;
-import 'package:algoriza_weather/shared/saved_data.dart';
+import 'package:algoriza_weather/core/utils/saved_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_storage/get_storage.dart';

@@ -12,7 +12,7 @@ import 'package:algoriza_weather/features/wheather/data/models/city/city.dart';
 import 'package:algoriza_weather/features/wheather/data/models/complete_weather/complete_weather.dart';
 import 'package:algoriza_weather/features/wheather/domain/usecases/get_complete_weather.dart';
 import 'package:algoriza_weather/features/wheather/domain/usecases/get_other_location_weather.dart';
-import 'package:algoriza_weather/shared/saved_data.dart';
+import 'package:algoriza_weather/core/utils/saved_data.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

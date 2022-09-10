@@ -2,7 +2,7 @@ import 'package:algoriza_weather/core/utils/app_colors.dart';
 import 'package:algoriza_weather/core/utils/app_strings.dart';
 import 'package:algoriza_weather/cubit/app_cubit.dart';
 import 'package:algoriza_weather/features/wheather/presentation/screens/drawer/widgets/drawer_bottom_row.dart';
-import 'package:algoriza_weather/shared/saved_data.dart';
+import 'package:algoriza_weather/core/utils/saved_data.dart';
 import 'package:flutter/material.dart';
 
 class ThemeSwitcher extends StatefulWidget {
